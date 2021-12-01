@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="javafx" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="/usr/lib/jvm/jdk-16.0.2" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="MAIN_CLASS_NAME" value="launch.Launcher" />
+    <module name="Dev" />
+    <option name="VM_PARAMETERS" value="--module-path ${PATH_TO_JFX} --add-modules javafx.controls,javafx.fxml" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
