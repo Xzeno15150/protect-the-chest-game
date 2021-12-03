@@ -10,5 +10,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="views.MainWindow"
             prefHeight="400.0" prefWidth="600.0">
-    <Button>TEST</Button>
+    <center>
+        <TextArea fx:id="textTest"></TextArea>
+    </center>
 </BorderPane>

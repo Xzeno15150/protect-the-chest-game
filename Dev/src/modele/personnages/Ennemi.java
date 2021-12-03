@@ -1,15 +1,12 @@
 package modele.personnages;
 
-public class Ennemi extends Tireur{
-    public Ennemi(int vitesse, String skin, int sante){
-        this.vitesseTir = vitesse;
-        this.skin = skin;
-        this.sante = sante;
-    }
-
-    @Override
-    public void tirer() {
-
+public class Ennemi extends Personage {
+    public Ennemi(String skin, int santemax, int x, int y) {
+        image = skin;
+        santeMax = santemax;
+        sante = santemax;
+        posX = x;
+        posY = y;
     }
 
     @Override

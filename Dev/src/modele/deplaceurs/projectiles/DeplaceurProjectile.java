@@ -1,5 +1,7 @@
 package modele.deplaceurs.projectiles;
 
-public abstract class DeplaceurProjectile {
+import modele.projectiles.Projectile;
 
+public interface DeplaceurProjectile {
+    void move(Projectile p, int dir);
 }

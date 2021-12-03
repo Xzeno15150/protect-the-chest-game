@@ -1,7 +1,7 @@
 package modele.deplaceurs.personnnages;
 
-import modele.personnages.Tireur;
+import modele.personnages.Personage;
 
 public abstract class DeplaceurTireur {
-    public abstract void deplacer(Tireur tireur);
+    public abstract void deplacer(Personage tireur);
 }
