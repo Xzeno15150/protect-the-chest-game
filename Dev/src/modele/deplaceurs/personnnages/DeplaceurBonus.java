@@ -1,4 +1,6 @@
-package modele;
+package modele.deplaceurs.personnnages;
+
+import modele.personnages.Tireur;
 
 public class DeplaceurBonus extends DeplaceurTireur{
     @Override

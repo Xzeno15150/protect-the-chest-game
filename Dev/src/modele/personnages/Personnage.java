@@ -1,8 +1,9 @@
-package modele;
+package modele.personnages;
 
-public class Ennemi extends Tireur{
-    public Ennemi(int vitesse, String skin, int sante){
-        this.vitesseTir = vitesse;
+public class Personnage extends Tireur{
+
+    public Personnage(int vitesse, String skin, int sante){
+        this.vitesseTir= vitesse;
         this.skin = skin;
         this.sante = sante;
     }
