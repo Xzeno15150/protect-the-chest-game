@@ -2,9 +2,9 @@ package modele.deplaceurs.personnages;
 
 import modele.personnages.Personnage;
 
-public class DeplaceurNormal extends DeplaceurTireur{
+public class DeplaceurNormal extends DeplaceurPersonnage {
     @Override
-    public void deplacer(Personnage tireur) {
+    public void deplacer(Personnage perso) {
 
     }
 }
