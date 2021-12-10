@@ -1,7 +1,7 @@
 package modele.personnages;
 
 
-public class PersonnagePrincipal extends Personage {
+public class PersonnagePrincipal extends Personnage {
 
     public PersonnagePrincipal(String skin, int santemax, int x, int y){
         image = skin;

@@ -1,6 +1,6 @@
 package modele.personnages;
 
-public class Ennemi extends Personage {
+public class Ennemi extends Personnage {
     public Ennemi(String skin, int santemax, int x, int y) {
         image = skin;
         santeMax = santemax;

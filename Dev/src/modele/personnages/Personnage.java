@@ -1,6 +1,6 @@
 package modele.personnages;
 
-public abstract class Personage {
+public abstract class Personnage {
     protected String image;
     protected int sante;
     protected int posX;
