@@ -5,29 +5,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import modele.collisions.Hitbox;
 
 public abstract class Personnage {
-    // Properties
-    private IntegerProperty posX = new SimpleIntegerProperty();
-    public int getPosX() {
-        return posX.get();
-    }
-    public void setPosX(int posX) {
-        this.posX.set(posX);
-    }
-    public IntegerProperty posXProperty() {
-        return posX;
-    }
-
-    private IntegerProperty posY = new SimpleIntegerProperty();
-    public int getPosY() {
-        return posY.get();
-    }
-    public IntegerProperty posYProperty() {
-        return posY;
-    }
-    public void setPosY(int posY) {
-        this.posY.set(posY);
-    }
-
     // Attributs
     private String image;
     private int sante;
@@ -61,8 +38,8 @@ public abstract class Personnage {
         image = skin;
     }
     public void setPos(int x, int y) {
-        setPosX(x);
-        setPosY(y);
+        hitbox.setPosX(x);
+        hitbox.setPosY(y);
     }
 }
 
