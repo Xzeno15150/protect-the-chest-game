@@ -1,35 +1,42 @@
 package views;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-import javafx.scene.input.KeyCode;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Rectangle;
+import modele.collisions.Hitbox;
+import modele.deplaceurs.personnages.DeplaceurNormal;
+import modele.deplaceurs.personnages.DeplaceurPersonnage;
+import modele.personnages.Personnage;
+import modele.personnages.PersonnagePrincipal;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-public class MainWindow implements KeyListener {
+public class MainWindow{
 
     @FXML
-    public TextArea textTest;
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        int c = e.getKeyCode();
-        textTest.appendText("^");
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
+    public BorderPane main;
+    @FXML
+    public Rectangle rectangleTest;
 
     @FXML
     public void initialize() {
+        Personnage p = new PersonnagePrincipal("", 20, 50, 50, new Hitbox(50));
+        DeplaceurPersonnage dp = new DeplaceurNormal();
 
+        main.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case UP :
+                    dp.deplacerVers(p, 0, -5);
+                case DOWN:
+                    dp.deplacerVers(p, 0, 5);
+                case LEFT:
+                    dp.deplacerVers(p, -5, 0);
+                case RIGHT:
+                    dp.deplacerVers(p, 5, 0);
+            }
+        });
+
+        rectangleTest.setWidth(p.getHitbox().getLargeur());
+        rectangleTest.setHeight(p.getHitbox().getLongueur());
+        p.posXProperty().bind(rectangleTest.xProperty());
+        p.posYProperty().bind(rectangleTest.yProperty());
     }
 }

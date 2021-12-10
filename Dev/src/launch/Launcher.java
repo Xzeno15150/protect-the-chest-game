@@ -10,7 +10,9 @@ public class Launcher extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent racine = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
-        primaryStage.setScene(new Scene(racine));
+        Scene s = new Scene(racine);
+        primaryStage.setScene(s);
+        primaryStage.setTitle("test");
         primaryStage.show();
     }
 }

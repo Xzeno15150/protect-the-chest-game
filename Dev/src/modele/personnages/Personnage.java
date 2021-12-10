@@ -1,48 +1,68 @@
 package modele.personnages;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import modele.collisions.Hitbox;
+
 public abstract class Personnage {
-    protected String image;
-    protected int sante;
-    protected int posX;
-    protected int posY;
-    protected int santeMax;
-
-    public abstract Boolean isAlive();
-
-    public int getSante() {
-        return sante;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setSante(int sante) {
-        this.sante = sante;
-    }
-
-    public void setImage(String skin) {
-        image = skin;
-    }
-
-    public int getPosY() {
-        return posY;
-    }
-
+    // Properties
+    private IntegerProperty posX = new SimpleIntegerProperty();
     public int getPosX() {
+        return posX.get();
+    }
+    public void setPosX(int posX) {
+        this.posX.set(posX);
+    }
+    public IntegerProperty posXProperty() {
         return posX;
     }
 
+    private IntegerProperty posY = new SimpleIntegerProperty();
+    public int getPosY() {
+        return posY.get();
+    }
+    public IntegerProperty posYProperty() {
+        return posY;
+    }
+    public void setPosY(int posY) {
+        this.posY.set(posY);
+    }
+
+    // Attributs
+    private String image;
+    private int sante;
+    private int santeMax;
+    private Hitbox hitbox;
+
+    public Hitbox getHitbox() {
+        return hitbox;
+    }
+    public int getSante() {
+        return sante;
+    }
+    public String getImage() {
+        return image;
+    }
     public int getSanteMax() {
         return santeMax;
     }
+    public Boolean isAlive(){ return getSante() > 0;}
 
-    public void setPosY(int posY) {
-        this.posY = posY;
+    protected void setSanteMax(int santeMax) {
+        this.santeMax = santeMax;
     }
-
-    public void setPosX(int posX) {
-        this.posX = posX;
+    protected void setHitbox(Hitbox hitbox) {
+        this.hitbox = hitbox;
+    }
+    public void setSante(int sante) {
+        this.sante = sante;
+    }
+    public void setImage(String skin) {
+        image = skin;
+    }
+    public void setPos(int x, int y) {
+        setPosX(x);
+        setPosY(y);
     }
 }
 
