@@ -1,7 +1,9 @@
 package views;
 
 import controllers.Manager;
+import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
+import javafx.animation.Timeline;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -12,35 +14,26 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import launch.Launcher;
-import modele.collisions.Hitbox;
-import modele.deplaceurs.personnages.DeplaceurNormal;
-import modele.deplaceurs.personnages.DeplaceurPersonnage;
 import modele.personnages.Personnage;
-import modele.personnages.PersonnagePrincipal;
 
 public class MainWindow{
 
     // Attributes
-    private Manager mgr = Launcher.getManager();
+    private final Manager mgr = Launcher.getManager();
 
-    AnimationTimer mouvementTimer = new AnimationTimer() {
+    private final AnimationTimer mouvementTimer = new AnimationTimer() {
         @Override
         public void handle(long now) {
-            // Attibutes
             if (zPressed.get()){
-                //rectangleTest.setLayoutY(rectangleTest.getLayoutY() + mouvement);
                 mgr.deplacerPersonnage(personnagePrincipale, 0);
             }
             if (sPressed.get()){
-                //rectangleTest.setLayoutY(rectangleTest.getLayoutY() + mouvement);
                 mgr.deplacerPersonnage(personnagePrincipale, 1);
             }
             if (qPressed.get()){
-                //rectangleTest.setLayoutX(rectangleTest.getLayoutX() - mouvement);
                 mgr.deplacerPersonnage(personnagePrincipale, 2);
             }
             if (dPressed.get()) {
-                //rectangleTest.setLayoutX(rectangleTest.getLayoutX() + mouvement);
                 mgr.deplacerPersonnage(personnagePrincipale, 3);
             }
         }
@@ -49,27 +42,23 @@ public class MainWindow{
     private Personnage personnagePrincipale;
 
     // Property
-    private BooleanProperty zPressed = new SimpleBooleanProperty();
-    private BooleanProperty sPressed = new SimpleBooleanProperty();
-    private BooleanProperty dPressed = new SimpleBooleanProperty();
-    private BooleanProperty qPressed = new SimpleBooleanProperty();
+    private final BooleanProperty zPressed = new SimpleBooleanProperty();
+    private final BooleanProperty sPressed = new SimpleBooleanProperty();
+    private final BooleanProperty dPressed = new SimpleBooleanProperty();
+    private final BooleanProperty qPressed = new SimpleBooleanProperty();
 
-    private BooleanBinding keyPressed = zPressed.or(sPressed).or(dPressed).or(qPressed);
+    private final BooleanBinding keyPressed = zPressed.or(sPressed).or(dPressed).or(qPressed);
+
+    private final BooleanProperty pPressed = new SimpleBooleanProperty();
+
 
     // FXML attributes
     @FXML
-    public Rectangle rectangleTest;
+    public Rectangle rectanglePersonnagePrincipale;
     @FXML
     public Label labelTest;
     @FXML
     public AnchorPane mainPane;
-
-    @FXML
-    public void handleClickBtn(ActionEvent actionEvent) {
-        personnagePrincipale.getHitbox().setPosX(130);
-        personnagePrincipale.getHitbox().setPosY(100);
-    }
-
 
     private void creerMouvement() {
         mainPane.setOnKeyPressed(event -> {
@@ -86,6 +75,9 @@ public class MainWindow{
             if (event.getCode() == KeyCode.D){
                 dPressed.set(true);
             }
+            if (event.getCode() == KeyCode.P){
+                pPressed.set(true);
+            }
         });
 
         mainPane.setOnKeyReleased(event -> {
@@ -101,8 +93,20 @@ public class MainWindow{
             if (event.getCode() == KeyCode.D){
                 dPressed.set(false);
             }
+            if (event.getCode() == KeyCode.P){
+                pPressed.set(false);
+            }
         });
     }
+
+
+    @FXML
+    public void handleClickBtn(ActionEvent actionEvent) {
+        personnagePrincipale.getHitbox().setPosX(130);
+        personnagePrincipale.getHitbox().setPosY(100);
+    }
+
+
 
     @FXML
     public void initialize() {
@@ -117,10 +121,12 @@ public class MainWindow{
             }
         }));
 
-        personnagePrincipale = new PersonnagePrincipal("", 20, new Hitbox(50, 200, 150));
-        //personnagePrincipale.getHitbox().posXProperty().bind(rectangleTest.layoutXProperty());
-        //personnagePrincipale.getHitbox().posYProperty().bind(rectangleTest.layoutYProperty());
-        rectangleTest.xProperty().bind(personnagePrincipale.getHitbox().posXProperty());
-        rectangleTest.xProperty().bind(personnagePrincipale.getHitbox().posYProperty());
+        personnagePrincipale = mgr.getPersonnagePrincipale();
+
+        // Binding rectangle avec le PersonnagePrincipale
+        rectanglePersonnagePrincipale.xProperty().bind(personnagePrincipale.getHitbox().posXProperty());
+        rectanglePersonnagePrincipale.yProperty().bind(personnagePrincipale.getHitbox().posYProperty());
     }
+
+
 }

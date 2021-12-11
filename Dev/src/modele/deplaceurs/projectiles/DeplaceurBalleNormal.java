@@ -4,15 +4,25 @@ import modele.deplaceurs.projectiles.DeplaceurProjectile;
 import modele.projectiles.Projectile;
 
 public class DeplaceurBalleNormal implements DeplaceurProjectile {
-    private int vitesse_balle = 1;
+    private final int VITESSE = 2;
 
     @Override
-    public void deplacerVers(Projectile p, int x, int y) {
-        
+    public void deplacerDroite(Projectile p) {
+        p.getHitbox().setPosX(p.getHitbox().getPosX() + VITESSE);
     }
 
     @Override
-    public void deplacerDe(Projectile p, int x, int y) {
+    public void deplacerGauche(Projectile p) {
+        p.getHitbox().setPosX(p.getHitbox().getPosX() - VITESSE);
+    }
 
+    @Override
+    public void deplacerHaut(Projectile p) {
+        p.getHitbox().setPosY(p.getHitbox().getPosX() - VITESSE);
+    }
+
+    @Override
+    public void deplacerBas(Projectile p) {
+        p.getHitbox().setPosY(p.getHitbox().getPosX() + VITESSE);
     }
 }

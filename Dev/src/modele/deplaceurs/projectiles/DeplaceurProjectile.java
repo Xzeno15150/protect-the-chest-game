@@ -3,6 +3,8 @@ package modele.deplaceurs.projectiles;
 import modele.projectiles.Projectile;
 
 public interface DeplaceurProjectile {
-    void deplacerVers(Projectile p, int x, int y);
-    void deplacerDe(Projectile p, int x, int y);
+    void deplacerDroite(Projectile p);
+    void deplacerGauche(Projectile p);
+    void deplacerHaut(Projectile p);
+    void deplacerBas(Projectile p);
 }

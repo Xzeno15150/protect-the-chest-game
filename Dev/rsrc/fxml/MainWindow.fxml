@@ -16,5 +16,5 @@
 
     <Label fx:id="labelTest" />
     <Button onAction="#handleClickBtn" text="Reset"/>
-    <Rectangle layoutX="200" layoutY="150" fx:id="rectangleTest" stroke="blue" fill="aliceblue" width="50" height="50"/>
+    <Rectangle layoutX="200" layoutY="150" fx:id="rectanglePersonnagePrincipale" stroke="blue" fill="aliceblue" width="50" height="50"/>
 </AnchorPane>

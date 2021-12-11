@@ -1,34 +1,31 @@
 package modele.projectiles;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import modele.collisions.Hitbox;
 
 public abstract class Projectile {
-    protected String image;
-    protected int maxDistance;
-    protected int posX;
-    protected int posY;
-    protected Hitbox hitbox;
+    private String image;
+    private int maxDistance;
+    private Hitbox hitbox;
 
+    // Getter/Setter
     public int getMaxDistance() {
         return maxDistance;
     }
     public String getImage() {
         return image;
     }
-    public int getPosX() {
-        return posX;
-    }
-    public int getPosY() {
-        return posY;
-    }
-    public Hitbox getHb() {
+    public Hitbox getHitbox() {
         return hitbox;
     }
-
-    public void setPosX(int posX) {
-        this.posX = posX;
+    protected void setImage(String image) {
+        this.image = image;
     }
-    public void setPosY(int posY) {
-        this.posY = posY;
+    protected void setMaxDistance(int maxDistance) {
+        this.maxDistance = maxDistance;
+    }
+    protected void setHitbox(Hitbox hitbox) {
+        this.hitbox = hitbox;
     }
 }

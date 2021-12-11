@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class Hitbox {
 
     // Properties
-    private IntegerProperty longueur = new SimpleIntegerProperty();
+    private final IntegerProperty longueur = new SimpleIntegerProperty();
     public int getLongueur() {
         return longueur.get();
     }
@@ -17,7 +17,7 @@ public class Hitbox {
         this.longueur.set(longueur);
     }
 
-    private IntegerProperty hauteur = new SimpleIntegerProperty();
+    private final IntegerProperty hauteur = new SimpleIntegerProperty();
     public int getHauteur() {
         return hauteur.get();
     }
@@ -28,7 +28,7 @@ public class Hitbox {
         this.hauteur.set(hauteur);
     }
 
-    private IntegerProperty posX = new SimpleIntegerProperty();
+    private final IntegerProperty posX = new SimpleIntegerProperty();
     public int getPosX() {
         return posX.get();
     }
@@ -39,7 +39,7 @@ public class Hitbox {
         return posX;
     }
 
-    private IntegerProperty posY = new SimpleIntegerProperty();
+    private final IntegerProperty posY = new SimpleIntegerProperty();
     public int getPosY() {
         return posY.get();
     }
