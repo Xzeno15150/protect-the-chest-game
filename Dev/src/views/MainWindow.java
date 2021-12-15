@@ -1,23 +1,19 @@
 package views;
 
 import controllers.Manager;
-import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
-import javafx.animation.Timeline;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Rectangle;
 import launch.Launcher;
-import modele.personnages.Personnage;
 
 public class MainWindow{
-
     // Attributes
     private final Manager mgr = Launcher.getManager();
 
@@ -25,23 +21,21 @@ public class MainWindow{
         @Override
         public void handle(long now) {
             if (zPressed.get()){
-                mgr.deplacerPersonnage(personnagePrincipale, 0);
+                mgr.deplacerPersonnage(mgr.getPersonnagePrincipal(), 0);
             }
             if (sPressed.get()){
-                mgr.deplacerPersonnage(personnagePrincipale, 1);
+                mgr.deplacerPersonnage(mgr.getPersonnagePrincipal(), 1);
             }
             if (qPressed.get()){
-                mgr.deplacerPersonnage(personnagePrincipale, 2);
+                mgr.deplacerPersonnage(mgr.getPersonnagePrincipal(), 2);
             }
             if (dPressed.get()) {
-                mgr.deplacerPersonnage(personnagePrincipale, 3);
+                mgr.deplacerPersonnage(mgr.getPersonnagePrincipal(), 3);
             }
         }
     };
 
-    private Personnage personnagePrincipale;
-
-    // Property
+    // Properties
     private final BooleanProperty zPressed = new SimpleBooleanProperty();
     private final BooleanProperty sPressed = new SimpleBooleanProperty();
     private final BooleanProperty dPressed = new SimpleBooleanProperty();
@@ -54,15 +48,14 @@ public class MainWindow{
 
     // FXML attributes
     @FXML
-    public Rectangle rectanglePersonnagePrincipale;
-    @FXML
-    public Label labelTest;
+    public ImageView imageViewPP;
     @FXML
     public AnchorPane mainPane;
 
-    private void creerMouvement() {
-        mainPane.setOnKeyPressed(event -> {
-            System.out.println(event.getCode());
+
+
+    private void creerKeyListener() {
+        Launcher.getStage().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.Z) {
                 zPressed.set(true);
             }
@@ -79,8 +72,7 @@ public class MainWindow{
                 pPressed.set(true);
             }
         });
-
-        mainPane.setOnKeyReleased(event -> {
+        Launcher.getStage().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.Z) {
                 zPressed.set(false);
             }
@@ -100,17 +92,10 @@ public class MainWindow{
     }
 
 
-    @FXML
-    public void handleClickBtn(ActionEvent actionEvent) {
-        personnagePrincipale.getHitbox().setPosX(130);
-        personnagePrincipale.getHitbox().setPosY(100);
-    }
-
-
 
     @FXML
     public void initialize() {
-        creerMouvement();
+        creerKeyListener();
 
         keyPressed.addListener(((observable, oldValue, newValue) -> {
             if (!oldValue) {
@@ -121,11 +106,12 @@ public class MainWindow{
             }
         }));
 
-        personnagePrincipale = mgr.getPersonnagePrincipale();
-
         // Binding rectangle avec le PersonnagePrincipale
-        rectanglePersonnagePrincipale.xProperty().bind(personnagePrincipale.getHitbox().posXProperty());
-        rectanglePersonnagePrincipale.yProperty().bind(personnagePrincipale.getHitbox().posYProperty());
+        imageViewPP.xProperty().bind(mgr.getPersonnagePrincipal().getHitbox().posXProperty());
+        imageViewPP.yProperty().bind(mgr.getPersonnagePrincipal().getHitbox().posYProperty());
+        imageViewPP.setImage(new Image(String.valueOf(getClass().getResource("/images/pp.png"))));
+        imageViewPP.fitHeightProperty().bind(mgr.getPersonnagePrincipal().getHitbox().hauteurProperty());
+        imageViewPP.fitWidthProperty().bind(mgr.getPersonnagePrincipal().getHitbox().longueurProperty());
     }
 
 

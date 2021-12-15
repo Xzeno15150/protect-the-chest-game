@@ -13,7 +13,9 @@ import modele.Monde;
 import java.util.ArrayList;
 
 public class Launcher extends Application {
-    private static ObjectProperty<Manager> manager = new SimpleObjectProperty<>();
+    private static Stage stage;
+
+    private static final ObjectProperty<Manager> manager = new SimpleObjectProperty<>();
     public static Manager getManager() {
         return manager.get();
     }
@@ -27,6 +29,8 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        stage = primaryStage;
+
         Monde monde = new Monde(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
         setManager(new Manager(monde));
 
@@ -34,9 +38,13 @@ public class Launcher extends Application {
         Parent racine = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
         Scene s = new Scene(racine);
 
-        primaryStage.setScene(s);
-        primaryStage.setTitle("test");
-        primaryStage.show();
+        stage.setScene(s);
+        stage.setTitle("test");
+        stage.show();
+    }
+
+    public static Stage getStage(){
+        return stage;
     }
 
 }

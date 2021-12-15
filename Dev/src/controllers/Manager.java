@@ -5,27 +5,27 @@ import modele.collisions.Hitbox;
 import modele.deplaceurs.personnages.DeplaceurNormal;
 import modele.deplaceurs.personnages.DeplaceurPersonnage;
 import modele.personnages.Personnage;
-import modele.projectiles.Balle;
-import modele.projectiles.Projectile;
+import modele.personnages.PersonnagePrincipal;
 
 public class Manager {
 
     // Attributes
     private final Monde monde;
-    private final Personnage personnagePrincipale;
+    private final Personnage personnagePrincipal;
 
     // Constructor
     public Manager(Monde monde) {
         this.monde = monde;
-        personnagePrincipale = monde.getLesPersonnages().get(0);
+        //personnagePrincipale = monde.getLesPersonnages().get(0);
+        personnagePrincipal = new PersonnagePrincipal("", 20, new Hitbox(100, 200, 200));
     }
 
     // Getter/Setter
     public Monde getMonde() {
         return monde;
     }
-    public Personnage getPersonnagePrincipale() {
-        return personnagePrincipale;
+    public Personnage getPersonnagePrincipal() {
+        return personnagePrincipal;
     }
 
     // Methods
