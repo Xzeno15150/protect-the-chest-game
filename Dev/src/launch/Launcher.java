@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import modele.Monde;
 
 import java.util.ArrayList;
@@ -31,7 +32,8 @@ public class Launcher extends Application {
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
 
-        Monde monde = new Monde(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        Monde monde = new Monde(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),stage.getWidth() , stage.getHeight());
+
         setManager(new Manager(monde));
 
 

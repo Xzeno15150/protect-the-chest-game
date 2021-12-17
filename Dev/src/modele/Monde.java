@@ -10,11 +10,15 @@ public class Monde {
     private List<Personnage> lesPersonnages;
     private List<Projectile> lesProjectiles;
     private List<Obstacle> lesObstacles;
+    private double longueur;
+    private double largeur;
 
-    public Monde(List<Personnage> lesPersonnages, List<Projectile> lesProjectiles, List<Obstacle> lesObstacles) {
+    public Monde(List<Personnage> lesPersonnages, List<Projectile> lesProjectiles, List<Obstacle> lesObstacles, double longueur, double largeur) {
         this.lesPersonnages = lesPersonnages;
         this.lesProjectiles = lesProjectiles;
         this.lesObstacles = lesObstacles;
+        this.longueur=longueur;
+        this.largeur=largeur;
     }
 
     public List<Personnage> getLesPersonnages() {
@@ -55,5 +59,12 @@ public class Monde {
     }
     public void removeProjectile(Projectile p){
         lesProjectiles.remove(p);
+    }
+
+    public double getLongueur() {
+        return longueur;
+    }
+    public double getLargeur() {
+        return largeur;
     }
 }

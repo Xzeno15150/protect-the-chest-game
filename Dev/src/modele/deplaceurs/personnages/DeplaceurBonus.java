@@ -11,7 +11,7 @@ public class DeplaceurBonus implements DeplaceurPersonnage {
     }
 
     @Override
-    public void deplacerDroite(Personnage perso) {
+    public void deplacerDroite(Personnage perso, double longueur, double largeur) {
         perso.setPos(perso.getHitbox().getPosX() + VITESSE, perso.getHitbox().getPosY());
     }
 

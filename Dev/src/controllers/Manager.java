@@ -35,7 +35,7 @@ public class Manager {
             case 0 -> dp.deplacerHaut(p);
             case 1 -> dp.deplacerBas(p);
             case 2 -> dp.deplacerGauche(p);
-            case 3 -> dp.deplacerDroite(p);
+            case 3 -> dp.deplacerDroite(p, this.monde.getLargeur(), this.monde.getLongueur());
         }
     }
 

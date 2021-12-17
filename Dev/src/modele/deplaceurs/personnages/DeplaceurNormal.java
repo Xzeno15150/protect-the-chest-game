@@ -1,5 +1,6 @@
 package modele.deplaceurs.personnages;
 
+import modele.collisions.Collisionneur;
 import modele.personnages.Personnage;
 
 public class DeplaceurNormal implements DeplaceurPersonnage {
@@ -11,8 +12,10 @@ public class DeplaceurNormal implements DeplaceurPersonnage {
     }
 
     @Override
-    public void deplacerDroite(Personnage perso) {
-        perso.setPos(perso.getHitbox().getPosX() + VITESSE, perso.getHitbox().getPosY());
+    public void deplacerDroite(Personnage perso, double longueur, double largeur) {
+        if(!Collisionneur.isOut(perso.getHitbox(), longueur,largeur)) {
+            perso.setPos(perso.getHitbox().getPosX() + VITESSE, perso.getHitbox().getPosY());
+        }
     }
     @Override
     public void deplacerGauche(Personnage personnage) {
