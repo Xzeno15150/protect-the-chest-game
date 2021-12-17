@@ -20,14 +20,37 @@ public class Collisionneur {
     }
 
     //Verifie qu'on ne sort pas de la fenêtre
-    public static Boolean isOut(Hitbox h, double longueur, double largeur){
-        System.out.println(largeur);
-        if (h.getTLCornerX() >= largeur ){
-            return true;
+    public static Boolean isOut(Hitbox h, int dir, double longueur, double hauteur){
+        switch (dir) {
+            case 0 -> {
+                return isOutHaut(h);
+            }
+            case 1 -> {
+                return isOutBas(h, hauteur);
+            }
+            case 2 -> {
+                return isOutGauche(h);
+            }
+            case 3 -> {
+                return isOutDroite(h, longueur);
+            }
         }
-        if (h.getTLCornerY() <= 0 || h.getBRCornerY()>= longueur) {
-            return true;
-        }
-        return false;
+        throw new IllegalArgumentException("La direction n'est pas bonne");
+    }
+
+    private static Boolean isOutDroite(Hitbox h, double longueur) {
+        return h.getBRCornerX() >= longueur;
+    }
+
+    private static Boolean isOutGauche(Hitbox h) {
+        return h.getTLCornerX() <= 0;
+    }
+
+    private static Boolean isOutBas(Hitbox h, double hauteur) {
+        return h.getBRCornerY() >= hauteur;
+    }
+
+    private static Boolean isOutHaut(Hitbox h) {
+        return h.getTLCornerY() <= 0;
     }
 }

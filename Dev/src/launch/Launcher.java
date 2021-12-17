@@ -32,16 +32,12 @@ public class Launcher extends Application {
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
 
-        Monde monde = new Monde(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),stage.getWidth() , stage.getHeight());
-
-        setManager(new Manager(monde));
-
-
+        setManager(new Manager());
         Parent racine = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
         Scene s = new Scene(racine);
 
         stage.setScene(s);
-        stage.setTitle("test");
+        stage.setTitle("Test");
         stage.show();
     }
 

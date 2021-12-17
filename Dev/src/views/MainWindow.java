@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 import launch.Launcher;
 
 public class MainWindow{
@@ -40,10 +41,9 @@ public class MainWindow{
     private final BooleanProperty sPressed = new SimpleBooleanProperty();
     private final BooleanProperty dPressed = new SimpleBooleanProperty();
     private final BooleanProperty qPressed = new SimpleBooleanProperty();
-
     private final BooleanBinding keyPressed = zPressed.or(sPressed).or(dPressed).or(qPressed);
 
-    private final BooleanProperty pPressed = new SimpleBooleanProperty();
+    private final BooleanProperty spacePressed = new SimpleBooleanProperty();
 
 
     // FXML attributes
@@ -51,7 +51,8 @@ public class MainWindow{
     public ImageView imageViewPP;
     @FXML
     public AnchorPane mainPane;
-
+    @FXML
+    public Rectangle hitboxTest;
 
 
     private void creerKeyListener() {
@@ -68,8 +69,8 @@ public class MainWindow{
             if (event.getCode() == KeyCode.D){
                 dPressed.set(true);
             }
-            if (event.getCode() == KeyCode.P){
-                pPressed.set(true);
+            if (event.getCode() == KeyCode.SPACE){
+                spacePressed.set(true);
             }
         });
         Launcher.getStage().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
@@ -86,7 +87,7 @@ public class MainWindow{
                 dPressed.set(false);
             }
             if (event.getCode() == KeyCode.P){
-                pPressed.set(false);
+                spacePressed.set(false);
             }
         });
     }
@@ -109,9 +110,17 @@ public class MainWindow{
         // Binding rectangle avec le PersonnagePrincipale
         imageViewPP.xProperty().bind(mgr.getPersonnagePrincipal().getHitbox().posXProperty());
         imageViewPP.yProperty().bind(mgr.getPersonnagePrincipal().getHitbox().posYProperty());
-        imageViewPP.setImage(new Image(String.valueOf(getClass().getResource("/images/pp.png"))));
+        imageViewPP.setImage(new Image(String.valueOf(getClass().getResource(mgr.getPersonnagePrincipal().getImage()))));
         imageViewPP.fitHeightProperty().bind(mgr.getPersonnagePrincipal().getHitbox().hauteurProperty());
         imageViewPP.fitWidthProperty().bind(mgr.getPersonnagePrincipal().getHitbox().longueurProperty());
+
+        hitboxTest.xProperty().bind(mgr.getPersonnagePrincipal().getHitbox().posXProperty());
+        hitboxTest.yProperty().bind(mgr.getPersonnagePrincipal().getHitbox().posYProperty());
+        hitboxTest.heightProperty().bind(mgr.getPersonnagePrincipal().getHitbox().hauteurProperty());
+        hitboxTest.widthProperty().bind(mgr.getPersonnagePrincipal().getHitbox().longueurProperty());
+
+        mgr.getMonde().longueurProperty().bind(Launcher.getStage().widthProperty());
+        mgr.getMonde().hauteurProperty().bind(Launcher.getStage().heightProperty());
     }
 
 

@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
 <?import javafx.scene.shape.Rectangle?>
-
-<?import javafx.scene.image.ImageView?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="views.MainWindow"
+<AnchorPane fx:id="mainPane"
             prefHeight="720.0" prefWidth="1080.0"
-            fx:id="mainPane">
-    <ImageView layoutX="200" layoutY="150" fx:id="imageViewPP"/>
+            style="-fx-background-color: #70dd5b;"
+            xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="views.MainWindow">
+
+    <Rectangle fx:id="hitboxTest" fill="#70dd5b" stroke="blue"/>
+    <ImageView fx:id="imageViewPP" />
 </AnchorPane>

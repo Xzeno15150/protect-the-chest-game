@@ -70,7 +70,7 @@ public class Hitbox {
      * @return position X du coin supérieur gauche
      */
     public int getTLCornerX(){
-        return getPosX() - getLongueur()/2;
+        return getPosX();
     }
 
     /**
@@ -78,7 +78,7 @@ public class Hitbox {
      * @return position Y du coin supérieur gauche
      */
     public int getTLCornerY(){
-        return getPosY() - getHauteur()/2;
+        return getPosY();
     }
 
     /**
@@ -86,7 +86,7 @@ public class Hitbox {
      * @return position X du coin inférieur droit
      */
     public int getBRCornerX(){
-        return getPosX() + getLongueur()/2;
+        return getPosX() + getLongueur();
     }
 
     /**
@@ -94,6 +94,6 @@ public class Hitbox {
      * @return position Y du coin inférieur droit
      */
     public int getBRCornerY(){
-        return getPosY() + getHauteur()/2;
+        return getPosY() + getHauteur();
     }
 }

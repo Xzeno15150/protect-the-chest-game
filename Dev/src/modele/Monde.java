@@ -1,5 +1,7 @@
 package modele;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import modele.obstacles.Obstacle;
 import modele.personnages.Personnage;
 import modele.projectiles.Projectile;
@@ -7,18 +9,41 @@ import modele.projectiles.Projectile;
 import java.util.List;
 
 public class Monde {
+    // Attributes
     private List<Personnage> lesPersonnages;
     private List<Projectile> lesProjectiles;
     private List<Obstacle> lesObstacles;
-    private double longueur;
-    private double largeur;
 
-    public Monde(List<Personnage> lesPersonnages, List<Projectile> lesProjectiles, List<Obstacle> lesObstacles, double longueur, double largeur) {
+    // Properties
+    private final DoubleProperty longueur = new SimpleDoubleProperty();
+    public DoubleProperty longueurProperty() {
+        return longueur;
+    }
+    public void setLongueur(double longueur) {
+        this.longueur.set(longueur);
+    }
+    public double getLongueur() {
+        return longueur.get();
+    }
+
+    private final DoubleProperty hauteur = new SimpleDoubleProperty();
+    public double getHauteur() {
+        return hauteur.get();
+    }
+    public DoubleProperty hauteurProperty() {
+        return hauteur;
+    }
+    public void setHauteur(double hauteur) {
+        this.hauteur.set(hauteur);
+    }
+
+
+    public Monde(List<Personnage> lesPersonnages, List<Projectile> lesProjectiles, List<Obstacle> lesObstacles, double longueur, double hauteur) {
         this.lesPersonnages = lesPersonnages;
         this.lesProjectiles = lesProjectiles;
         this.lesObstacles = lesObstacles;
-        this.longueur=longueur;
-        this.largeur=largeur;
+        setLongueur(longueur);
+        setHauteur(hauteur);
     }
 
     public List<Personnage> getLesPersonnages() {
@@ -59,12 +84,5 @@ public class Monde {
     }
     public void removeProjectile(Projectile p){
         lesProjectiles.remove(p);
-    }
-
-    public double getLongueur() {
-        return longueur;
-    }
-    public double getLargeur() {
-        return largeur;
     }
 }
