@@ -1,4 +1,4 @@
-package observers;
+package modele.observers;
 
 public interface ObservateurBoucle {
     void update();

@@ -5,7 +5,7 @@ import modele.personnages.Personnage;
 
 public class DeplaceurNormal implements DeplaceurPersonnage {
 
-    private static final int VITESSE = 1;
+    private static final int VITESSE = 2;
 
     public void deplacerVers(Personnage perso, int x, int y) {
         perso.setPos(x, y);

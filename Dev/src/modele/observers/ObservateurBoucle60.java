@@ -1,11 +1,10 @@
-package observers;
+package modele.observers;
 
-import java.util.List;
+import launch.Launcher;
 
 public class ObservateurBoucle60 implements ObservateurBoucle{
-
     @Override
     public void update() {
-
+        Launcher.getManager().tour();
     }
 }

@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
 <?import javafx.scene.shape.Rectangle?>
-<AnchorPane fx:id="mainPane"
-            prefHeight="720.0" prefWidth="1080.0"
-            style="-fx-background-color: #70dd5b;"
-            xmlns="http://javafx.com/javafx/16"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="views.MainWindow">
 
-    <Rectangle fx:id="hitboxTest" fill="#70dd5b" stroke="blue"/>
+<AnchorPane fx:id="mainPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #70dd5b;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MainWindow">
+
+    <Rectangle fx:id="hitboxTest" fill="#70dd5b" stroke="blue" />
     <ImageView fx:id="imageViewPP" />
+    <Label contentDisplay="CENTER" graphicTextGap="10.0" layoutX="732.0" layoutY="299.0" text="Pos perso : " />
+    <Label fx:id="labelCoord" layoutX="808.0" layoutY="299.0" />
 </AnchorPane>
