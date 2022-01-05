@@ -5,6 +5,7 @@ import data.Stub;
 import javafx.scene.input.KeyCode;
 import modele.Monde;
 import modele.boucles.Boucle30FPS;
+import modele.boucles.Boucle60FPS;
 import modele.deplaceurs.personnages.DeplaceurNormal;
 import modele.deplaceurs.personnages.DeplaceurPersonnage;
 import modele.observers.ObservateurBoucle;
@@ -46,7 +47,7 @@ public class Manager {
         personnagePrincipal = monde.getLesPersonnages().get(0);
         gameRunning = true;
 
-        var gameLoop = new Boucle30FPS();
+        var gameLoop = new Boucle60FPS();
         gameLoop.attacher(new ObservateurBouclePrincipale());
 
         Thread gameLoopThread = new Thread(gameLoop);
