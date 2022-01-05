@@ -26,8 +26,6 @@ public class MainWindow{
     public AnchorPane mainPane;
     @FXML
     public Rectangle hitboxTest;
-    @FXML
-    public Label labelCoord;
 
 
     @FXML

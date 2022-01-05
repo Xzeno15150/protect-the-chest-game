@@ -32,7 +32,6 @@ public class Collisionneur {
                 return isOutHaut(h);
             }
             case 1 -> {
-                System.out.println(hauteur);
                 return isOutBas(h, hauteur);
             }
             case 2 -> {
