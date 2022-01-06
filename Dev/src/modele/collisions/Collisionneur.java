@@ -18,13 +18,6 @@ public class Collisionneur {
         return h1.getTLCornerY() < h2.getBRCornerY() && h2.getTLCornerY() < h1.getBRCornerY();
     }
 
-
-    public static Boolean isCollisionDroite(Hitbox h1, Hitbox h2) {
-        return  h1.getBRCornerX() >= h2.getTLCornerX()
-                && (h1.getTLCornerY() <= h2.getBRCornerY() && h1.getTLCornerY() > h2.getTLCornerY()
-                    || h1.getBRCornerY() <= h2.getBRCornerY() && h1.getBRCornerY() > h2.getTLCornerY());
-    }
-
     //Verifie qu'on ne sort pas de la fenêtre
     public static Boolean isOut(Hitbox h, int dir, double longueur, double hauteur){
         switch (dir) {

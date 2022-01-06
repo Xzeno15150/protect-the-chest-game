@@ -1,17 +1,21 @@
 package modele;
 
+import com.sun.javafx.collections.ObservableSetWrapper;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.collections.ObservableSet;
 import modele.obstacles.Obstacle;
 import modele.personnages.Personnage;
 import modele.projectiles.Projectile;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Monde {
     // Attributes
     private List<Personnage> lesPersonnages;
-    private List<Projectile> lesProjectiles;
+    private ObservableSet<Projectile> lesProjectiles;
     private List<Obstacle> lesObstacles;
 
     // Properties
@@ -38,9 +42,10 @@ public class Monde {
     }
 
 
-    public Monde(List<Personnage> lesPersonnages, List<Projectile> lesProjectiles, List<Obstacle> lesObstacles, double longueur, double hauteur) {
+
+    public Monde(List<Personnage> lesPersonnages, Set<Projectile> lesProjectiles, List<Obstacle> lesObstacles, double longueur, double hauteur) {
         this.lesPersonnages = lesPersonnages;
-        this.lesProjectiles = lesProjectiles;
+        this.lesProjectiles = new ObservableSetWrapper<>(lesProjectiles);
         this.lesObstacles = lesObstacles;
         setLongueur(longueur);
         setHauteur(hauteur);
@@ -53,10 +58,11 @@ public class Monde {
         this.lesPersonnages = lesPersonnages;
     }
 
-    public List<Projectile> getLesProjectiles() {
+
+    public Set<Projectile> getLesProjectiles() {
         return lesProjectiles;
     }
-    public void setLesProjectiles(List<Projectile> lesProjectiles) {
+    public void setLesProjectiles(ObservableSet<Projectile> lesProjectiles) {
         this.lesProjectiles = lesProjectiles;
     }
 

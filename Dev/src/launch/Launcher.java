@@ -39,6 +39,8 @@ public class Launcher extends Application {
         stage.setScene(s);
         stage.setTitle("Test");
         stage.show();
+
+        getManager().startGame();
     }
 
     public static Stage getStage(){

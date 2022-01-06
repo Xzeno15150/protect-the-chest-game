@@ -7,6 +7,7 @@ import modele.personnages.Personnage;
 import modele.personnages.PersonnagePrincipal;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Stub implements LoaderMonde{
@@ -16,6 +17,6 @@ public class Stub implements LoaderMonde{
         List<Personnage> l = new ArrayList<>();
         l.add(personnagePrincipal);
 
-        return new Monde(l, new ArrayList<>(), new ArrayList<>(), 1080, 720);
+        return new Monde(l, new HashSet<>(), new ArrayList<>(), 1080, 720);
     }
 }

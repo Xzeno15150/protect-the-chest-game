@@ -3,6 +3,8 @@ package modele.collisions;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+import java.util.Objects;
+
 public class Hitbox {
 
     // Properties
@@ -95,5 +97,18 @@ public class Hitbox {
      */
     public int getBRCornerY(){
         return getPosY() + getHauteur();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Hitbox hitbox = (Hitbox) o;
+        return longueur.equals(hitbox.longueur) && hauteur.equals(hitbox.hauteur) && posX.equals(hitbox.posX) && posY.equals(hitbox.posY);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(longueur, hauteur, posX, posY);
     }
 }
