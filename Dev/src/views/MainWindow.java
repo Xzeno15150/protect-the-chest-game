@@ -14,6 +14,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import launch.Launcher;
+import modele.projectiles.Projectile;
+
+import java.net.URL;
 
 public class MainWindow{
     // Attributes
@@ -45,6 +48,16 @@ public class MainWindow{
 
         mgr.getMonde().longueurProperty().bind(Launcher.getStage().widthProperty());
         mgr.getMonde().hauteurProperty().bind(Launcher.getStage().heightProperty());
+
+        mgr.getMonde().lesProjectilesProperty().addListener((observable, oldValue, newValue) -> {
+            if (oldValue.size() <= newValue.size()) {
+                Projectile p = newValue.get(newValue.size()-1);
+                ImageView newI = new ImageView(new Image(p.getImage()));
+                newI.xProperty().bind(p.getHitbox().posXProperty());
+                newI.yProperty().bind(p.getHitbox().posYProperty());
+                mainPane.getChildren().add(newI);
+            }
+        });
     }
 
 

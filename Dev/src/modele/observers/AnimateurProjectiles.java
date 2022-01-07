@@ -14,7 +14,9 @@ public class AnimateurProjectiles implements ObservateurBoucle{
     public void update() {
         for (Projectile p : mgr.getMonde().getLesProjectiles()) {
             if (!CollisionneurProjectiles.isOut(p.getHitbox(), 0, mgr.getMonde().getLongueur(), mgr.getMonde().getHauteur())) {
-                Platform.runLater(() -> p.getHitbox().setPosY(p.getHitbox().getPosY() - p.getVitesse()));
+                Platform.runLater(
+                        () -> p.getHitbox().setPosY(p.getHitbox().getPosY() - p.getVitesse())
+                );
             }
         }
     }

@@ -1,8 +1,9 @@
 package modele;
 
-import com.sun.javafx.collections.ObservableSetWrapper;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
+
+import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
 import modele.obstacles.Obstacle;
 import modele.personnages.Personnage;
@@ -15,7 +16,6 @@ import java.util.Set;
 public class Monde {
     // Attributes
     private List<Personnage> lesPersonnages;
-    private ObservableSet<Projectile> lesProjectiles;
     private List<Obstacle> lesObstacles;
 
     // Properties
@@ -42,10 +42,20 @@ public class Monde {
     }
 
 
+    private final ListProperty<Projectile> lesProjectiles;
+    public List<Projectile> getLesProjectiles() {
+        return lesProjectiles.get();
+    }
+    public void setLesProjectiles(ObservableList<Projectile> lesProjectiles) {
+        this.lesProjectiles.set(lesProjectiles);
+    }
+    public ListProperty<Projectile> lesProjectilesProperty() {return lesProjectiles;}
 
-    public Monde(List<Personnage> lesPersonnages, Set<Projectile> lesProjectiles, List<Obstacle> lesObstacles, double longueur, double hauteur) {
+
+
+    public Monde(List<Personnage> lesPersonnages, List<Projectile> lesProjectiles, List<Obstacle> lesObstacles, double longueur, double hauteur) {
         this.lesPersonnages = lesPersonnages;
-        this.lesProjectiles = new ObservableSetWrapper<>(lesProjectiles);
+        this.lesProjectiles = new SimpleListProperty<>(FXCollections.observableList(lesProjectiles));
         this.lesObstacles = lesObstacles;
         setLongueur(longueur);
         setHauteur(hauteur);
@@ -59,12 +69,6 @@ public class Monde {
     }
 
 
-    public Set<Projectile> getLesProjectiles() {
-        return lesProjectiles;
-    }
-    public void setLesProjectiles(ObservableSet<Projectile> lesProjectiles) {
-        this.lesProjectiles = lesProjectiles;
-    }
 
     public List<Obstacle> getLesObstacles() {
         return lesObstacles;

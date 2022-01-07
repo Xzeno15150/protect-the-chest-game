@@ -13,6 +13,8 @@ import modele.observers.ObservateurBouclePrincipale;
 import modele.personnages.Personnage;
 import modele.projectiles.Projectile;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 public class Manager {
@@ -22,6 +24,7 @@ public class Manager {
     private final Personnage personnagePrincipal;
     private boolean gameRunning;
     private final KeyboardListener keyboardListener = new KeyboardListener();
+    private int lastShotTime = 0;
 
     public Manager() {
         LoaderMonde loaderMonde = new Stub();
@@ -80,7 +83,9 @@ public class Manager {
         if (isGameRunning()){
             deplacerPersonnage(activeKeys);
             if (activeKeys.contains(KeyCode.SPACE)) {
-                tirer();
+                if (LocalDateTime.now().getSecond() - lastShotTime > 1) {
+                    tirer();
+                }
             }
         }
     }
