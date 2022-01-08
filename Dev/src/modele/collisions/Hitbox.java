@@ -54,8 +54,8 @@ public class Hitbox {
 
 
     // Constructeurs
-    public Hitbox(int longueur, int largeur, int x, int y) {
-        setHauteur(largeur);
+    public Hitbox(int longueur, int hauteur, int x, int y) {
+        setHauteur(hauteur);
         setLongueur(longueur);
         setPosX(x);
         setPosY(y);

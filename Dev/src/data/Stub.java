@@ -3,6 +3,7 @@ package data;
 import launch.Launcher;
 import modele.Monde;
 import modele.collisions.Hitbox;
+import modele.obstacles.Obstacle;
 import modele.personnages.Personnage;
 import modele.personnages.PersonnagePrincipal;
 
@@ -17,6 +18,10 @@ public class Stub implements LoaderMonde{
         List<Personnage> l = new ArrayList<>();
         l.add(personnagePrincipal);
 
-        return new Monde(l, new ArrayList<>(), new ArrayList<>(), 1080, 720);
+        Obstacle coffre = new Obstacle("/images/coffre.png",new Hitbox(120,80, 540-60,720));
+        List<Obstacle> lesObstacles = new ArrayList<>();
+        lesObstacles.add(coffre);
+
+        return new Monde(l, new ArrayList<>(), lesObstacles, 1080, 720);
     }
 }
