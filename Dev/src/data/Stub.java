@@ -18,7 +18,7 @@ public class Stub implements LoaderMonde{
         List<Personnage> l = new ArrayList<>();
         l.add(personnagePrincipal);
 
-        Obstacle coffre = new Obstacle("/images/coffre.png",new Hitbox(120,80, 540-60,720));
+        Obstacle coffre = new Obstacle("/images/coffre.png",new Hitbox(120,80, 540-60,500));
         List<Obstacle> lesObstacles = new ArrayList<>();
         lesObstacles.add(coffre);
 

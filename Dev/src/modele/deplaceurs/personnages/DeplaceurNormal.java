@@ -13,27 +13,27 @@ public class DeplaceurNormal implements DeplaceurPersonnage {
     }
 
     @Override
-    public void deplacerDroite(Personnage perso, double longueur, double hauteur) {
-        if(!Collisionneur.isOut(perso.getHitbox(), 3, longueur, hauteur)) {
-            Platform.runLater(() -> perso.setPos(perso.getHitbox().getPosX() + VITESSE, perso.getHitbox().getPosY()));
+    public void deplacerDroite(Personnage personnage, double longueur, double hauteur) {
+        if(!Collisionneur.isOut(personnage.getHitbox(), 3, longueur, hauteur) && !Collisionneur.isCollision(personnage.getHitbox(), 3)) {
+            Platform.runLater(() -> personnage.setPos(personnage.getHitbox().getPosX() + VITESSE, personnage.getHitbox().getPosY()));
         }
     }
     @Override
     public void deplacerGauche(Personnage personnage, double longueur, double hauteur) {
-        if(!Collisionneur.isOut(personnage.getHitbox(), 2, longueur, hauteur)) {
+        if(!Collisionneur.isOut(personnage.getHitbox(), 2, longueur, hauteur) && !Collisionneur.isCollision(personnage.getHitbox(),2)) {
 
             Platform.runLater(() -> personnage.setPos(personnage.getHitbox().getPosX() - VITESSE, personnage.getHitbox().getPosY()));
         }
     }
     @Override
     public void deplacerHaut(Personnage personnage, double longueur, double hauteur) {
-        if(!Collisionneur.isOut(personnage.getHitbox(),0,  longueur, hauteur)){
+        if(!Collisionneur.isOut(personnage.getHitbox(),0,  longueur, hauteur) && !Collisionneur.isCollision(personnage.getHitbox(),0)){
             Platform.runLater(() -> personnage.setPos(personnage.getHitbox().getPosX(), personnage.getHitbox().getPosY() - VITESSE));
         }
     }
     @Override
     public void deplacerBas(Personnage personnage, double longueur, double hauteur) {
-        if(!Collisionneur.isOut(personnage.getHitbox(), 1, longueur, hauteur)){
+        if(!Collisionneur.isOut(personnage.getHitbox(), 1, longueur, hauteur) && !Collisionneur.isCollision(personnage.getHitbox(),1)){
             Platform.runLater(() -> personnage.setPos(personnage.getHitbox().getPosX(), personnage.getHitbox().getPosY() + VITESSE));
         }
     }

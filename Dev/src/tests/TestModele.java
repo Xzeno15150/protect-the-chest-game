@@ -12,12 +12,12 @@ public class TestModele {
         Personnage p2 = new Ennemi("", 20,  new Hitbox(100, 250, 150));
 
         Collisionneur c = new Collisionneur();
-
+/*
         if (c.isCollision(p1.getHitbox(), p2.getHitbox())){
             System.out.println("Collision");
         }
         else{
             System.out.println("Pas collision");
-        }
+        }*/
     }
 }
