@@ -33,15 +33,12 @@ public class MainWindow{
     @FXML
     public Rectangle balleHB;
 
-    public void ajouterProjectile(Projectile p) {
-        ImageView newI = new ImageView(new Image(p.getImage()));
-        newI.xProperty().bind(p.getHitbox().posXProperty());
-        newI.yProperty().bind(p.getHitbox().posYProperty());
+    public void ajouterProjectile(ImageView newI) {
         mainPane.getChildren().add(newI);
     }
 
-    public void retirerProjectile(Projectile p) {
-
+    public void retirerProjectile(ImageView newI) {
+            mainPane.getChildren().remove(newI);
     }
 
 

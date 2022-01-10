@@ -8,17 +8,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-import modele.Monde;
 import views.MainWindow;
 import views.ManagerVue;
 
-import java.util.ArrayList;
-
 public class Launcher extends Application {
     private static Stage stage;
-    private static MainWindow mainWindow;
-    private static final ManagerVue managerVue = new ManagerVue();
+    private ManagerVue managerVue;
 
     private static final ObjectProperty<Manager> manager = new SimpleObjectProperty<>();
     public static Manager getManager() {
@@ -37,7 +32,8 @@ public class Launcher extends Application {
         stage = primaryStage;
 
         setManager(new Manager());
-        mainWindow = new MainWindow();
+        MainWindow mainWindow = new MainWindow();
+        managerVue = new ManagerVue(mainWindow);
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setController(mainWindow);
@@ -55,13 +51,5 @@ public class Launcher extends Application {
 
     public static Stage getStage(){
         return stage;
-    }
-
-    public static MainWindow getMainWindow() {
-        return mainWindow;
-    }
-
-    public static ManagerVue getManagerVue() {
-        return managerVue;
     }
 }
