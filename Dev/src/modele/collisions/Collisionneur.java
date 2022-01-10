@@ -50,7 +50,10 @@ public class Collisionneur {
             return false;
         }
         // Cas où une Hitbox est au dessus de l'autre
-        return h1.getTLCornerY() < h2.getBRCornerY() && h2.getTLCornerY() < h1.getBRCornerY();
+        if( h1.getTLCornerY() < h2.getBRCornerY() && h2.getTLCornerY() < h1.getBRCornerY()){
+            return true;
+        }
+        return false;
 
     }
 

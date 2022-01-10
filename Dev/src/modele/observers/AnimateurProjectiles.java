@@ -13,14 +13,14 @@ public class AnimateurProjectiles implements ObservateurBoucle{
     @Override
     public void update() {
         for (Projectile p : mgr.getMonde().getLesProjectiles()) {
-            if (!CollisionneurProjectiles.isOut(p.getHitbox(), 0, mgr.getMonde().getLongueur(), mgr.getMonde().getHauteur())) {
+            if (!CollisionneurProjectiles.isOut(p.getHitbox(), 0, mgr.getMonde().getLongueur(), mgr.getMonde().getHauteur()) && !CollisionneurProjectiles.isCollision(p.getHitbox())) {
                 Platform.runLater(
                         () -> p.getHitbox().setPosY(p.getHitbox().getPosY() - p.getVitesse())
                 );
             }
             else{
                 Platform.runLater(
-                        () -> mgr.getMonde().getLesProjectiles().remove(p)
+                        () -> mgr.getMonde().removeProjectile(p)
                 );
             }
         }
