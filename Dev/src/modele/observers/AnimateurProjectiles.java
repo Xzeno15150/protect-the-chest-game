@@ -18,6 +18,11 @@ public class AnimateurProjectiles implements ObservateurBoucle{
                         () -> p.getHitbox().setPosY(p.getHitbox().getPosY() - p.getVitesse())
                 );
             }
+            else{
+                Platform.runLater(
+                        () -> mgr.getMonde().getLesProjectiles().remove(p)
+                );
+            }
         }
     }
 }

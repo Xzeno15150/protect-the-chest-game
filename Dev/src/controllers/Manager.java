@@ -83,8 +83,10 @@ public class Manager {
         if (isGameRunning()){
             deplacerPersonnage(activeKeys);
             if (activeKeys.contains(KeyCode.SPACE)) {
-                if (LocalDateTime.now().getSecond() - lastShotTime > 1) {
+                var newShotTime = LocalDateTime.now().getSecond();
+                if (newShotTime - lastShotTime > 0.25) {
                     tirer();
+                    lastShotTime = newShotTime;
                 }
             }
         }

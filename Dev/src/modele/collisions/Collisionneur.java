@@ -6,6 +6,9 @@ import modele.obstacles.Obstacle;
 import modele.personnages.Personnage;
 import modele.projectiles.Projectile;
 
+import controllers.Manager;
+import launch.Launcher;
+
 public class Collisionneur {
 
     private static final Manager mgr = Launcher.getManager();
@@ -85,4 +88,5 @@ public class Collisionneur {
     private static Boolean isOutHaut(Hitbox h) {
         return h.getTLCornerY() <= 0;
     }
+
 }

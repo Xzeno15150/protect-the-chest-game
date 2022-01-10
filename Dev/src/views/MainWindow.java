@@ -50,7 +50,10 @@ public class MainWindow{
         mgr.getMonde().longueurProperty().bind(Launcher.getStage().widthProperty());
         mgr.getMonde().hauteurProperty().bind(Launcher.getStage().heightProperty());
 
+
+
         mgr.getMonde().lesProjectilesProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println(oldValue+", "+newValue);
             if (oldValue.size() <= newValue.size()) {
                 Projectile p = newValue.get(newValue.size()-1);
                 ImageView newI = new ImageView(new Image(p.getImage()));
