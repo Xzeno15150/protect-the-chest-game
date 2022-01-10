@@ -33,6 +33,17 @@ public class MainWindow{
     @FXML
     public Rectangle balleHB;
 
+    public void ajouterProjectile(Projectile p) {
+        ImageView newI = new ImageView(new Image(p.getImage()));
+        newI.xProperty().bind(p.getHitbox().posXProperty());
+        newI.yProperty().bind(p.getHitbox().posYProperty());
+        mainPane.getChildren().add(newI);
+    }
+
+    public void retirerProjectile(Projectile p) {
+
+    }
+
 
     @FXML
     public void initialize() {
@@ -49,19 +60,6 @@ public class MainWindow{
 
         mgr.getMonde().longueurProperty().bind(Launcher.getStage().widthProperty());
         mgr.getMonde().hauteurProperty().bind(Launcher.getStage().heightProperty());
-
-
-
-        mgr.getMonde().lesProjectilesProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println(oldValue+", "+newValue);
-            if (oldValue.size() <= newValue.size()) {
-                Projectile p = newValue.get(newValue.size()-1);
-                ImageView newI = new ImageView(new Image(p.getImage()));
-                newI.xProperty().bind(p.getHitbox().posXProperty());
-                newI.yProperty().bind(p.getHitbox().posYProperty());
-                mainPane.getChildren().add(newI);
-            }
-        });
 
         for (Obstacle o: mgr.getMonde().getLesObstacles()) {
             ImageView imgObs= new ImageView();

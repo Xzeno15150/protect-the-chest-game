@@ -3,6 +3,7 @@ package controllers;
 import data.LoaderMonde;
 import data.Stub;
 import javafx.scene.input.KeyCode;
+import launch.Launcher;
 import modele.Monde;
 import modele.boucles.Boucle60FPS;
 import modele.collisions.Hitbox;
@@ -29,6 +30,7 @@ public class Manager {
     public Manager() {
         LoaderMonde loaderMonde = new Stub();
         monde = loaderMonde.load();
+
         personnagePrincipal = monde.getLesPersonnages().get(0);
     }
 
@@ -67,11 +69,9 @@ public class Manager {
         if (activeKeys.contains(KeyCode.S)) {
             dp.deplacerBas(personnagePrincipal, monde.getLongueur(), monde.getHauteur());
         }
-
         if (activeKeys.contains(KeyCode.Q)) {
             dp.deplacerGauche(personnagePrincipal, monde.getLongueur(), monde.getHauteur());
         }
-
         if (activeKeys.contains(KeyCode.D)) {
             dp.deplacerDroite(personnagePrincipal, monde.getLongueur(), monde.getHauteur());
         }

@@ -10,11 +10,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import modele.Monde;
+import views.MainWindow;
+import views.ManagerVue;
 
 import java.util.ArrayList;
 
 public class Launcher extends Application {
     private static Stage stage;
+    private static MainWindow mainWindow;
+    private static final ManagerVue managerVue = new ManagerVue();
 
     private static final ObjectProperty<Manager> manager = new SimpleObjectProperty<>();
     public static Manager getManager() {
@@ -33,13 +37,19 @@ public class Launcher extends Application {
         stage = primaryStage;
 
         setManager(new Manager());
-        Parent racine = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
+        mainWindow = new MainWindow();
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setController(mainWindow);
+        fxmlLoader.setLocation(getClass().getResource("/fxml/MainWindow.fxml"));
+        Parent racine = fxmlLoader.load();
+
         Scene s = new Scene(racine);
 
         stage.setScene(s);
         stage.setTitle("Test");
         stage.show();
-
+        managerVue.addListenerToProjectileCollection();
         getManager().startGame();
     }
 
@@ -47,4 +57,11 @@ public class Launcher extends Application {
         return stage;
     }
 
+    public static MainWindow getMainWindow() {
+        return mainWindow;
+    }
+
+    public static ManagerVue getManagerVue() {
+        return managerVue;
+    }
 }

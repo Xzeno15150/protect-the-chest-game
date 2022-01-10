@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane fx:id="mainPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #70dd5b;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MainWindow">
+<AnchorPane fx:id="mainPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #70dd5b;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <Rectangle fx:id="hitboxTest" fill="transparent" stroke="blue" />
     <Rectangle fx:id="balleHB" fill="#70dd5b" stroke="red" />
     <ImageView fx:id="imageViewPP"/>
