@@ -93,7 +93,7 @@ public class Manager {
     }
     private void tirer() {
         Hitbox hb = new Hitbox(20, 50, personnagePrincipal.getHitbox().getPosX(), personnagePrincipal.getHitbox().getPosY()-20);
-        Projectile p = new Projectile("/images/bullet.png", 100, 10, hb);
+        Projectile p = new Projectile("/images/bullet.png", 100, 10,5, hb);
         monde.addProjectile(p);
     }
 }

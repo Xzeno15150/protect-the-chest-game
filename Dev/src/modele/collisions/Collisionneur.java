@@ -45,31 +45,40 @@ public class Collisionneur {
         if(h1.equals(h2)) {
             return false;
         }
-        // Cas où une Hitbox est à gauche de l'autre
-        if(h1.getTLCornerX() >= h2.getBRCornerX() || h2.getTLCornerX() >= h1.getBRCornerX()) {
-            return false;
+        // variable pour ajuster les collisions (surement à retravailler)
+        int pix=2;
+        //Verifie pour chaque direction si il y'a une collision
+        switch (dir) {
+            case 0 : {
+                return h1.getTLCornerY()<= h2.getBRCornerY() && h1.getBRCornerY() >= h2.getTLCornerY() && h1.getTLCornerX()> h2.getTLCornerX()-h1.getLongueur()+pix && h1.getBRCornerX() < h2.getBRCornerX()+ h1.getLongueur()-pix;
+            }
+            case 1 : {
+                return h1.getBRCornerY()>= h2.getTLCornerY() && h1.getTLCornerY() <= h2.getBRCornerY() && h1.getTLCornerX()> h2.getTLCornerX()-h1.getLongueur()+pix && h1.getBRCornerX() < h2.getBRCornerX()+ h1.getLongueur()-pix;
+            }
+            case 2 : {
+                return h1.getTLCornerX()<= h2.getBRCornerX() && h1.getBRCornerX() >= h2.getTLCornerX() && h1.getTLCornerY()> h2.getTLCornerY()- h1.getHauteur()+pix && h1.getBRCornerY()< h2.getBRCornerY()+ h1.getHauteur()-pix;
+            }
+            case 3 : {
+                return h1.getBRCornerX()>= h2.getTLCornerX() && h1.getTLCornerX() <= h2.getBRCornerX() && h1.getTLCornerY()> h2.getTLCornerY()- h1.getHauteur()+pix && h1.getBRCornerY()< h2.getBRCornerY()+ h1.getHauteur()-pix;
+            }
         }
-        // Cas où une Hitbox est au dessus de l'autre
-        if( h1.getTLCornerY() < h2.getBRCornerY() && h2.getTLCornerY() < h1.getBRCornerY()){
-            return true;
-        }
-        return false;
-
+        throw new IllegalArgumentException("La direction n'est pas bonne");
     }
+
 
     //Verifie qu'on ne sort pas de la fenêtre
     public static Boolean isOut(Hitbox h, int dir, double longueur, double hauteur){
         switch (dir) {
-            case 0 -> {
+            case 0 : {
                 return isOutHaut(h);
             }
-            case 1 -> {
+            case 1 : {
                 return isOutBas(h, hauteur);
             }
-            case 2 -> {
+            case 2 : {
                 return isOutGauche(h);
             }
-            case 3 -> {
+            case 3 : {
                 return isOutDroite(h, longueur);
             }
         }

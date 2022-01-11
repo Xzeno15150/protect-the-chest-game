@@ -10,29 +10,30 @@ public class CollisionneurProjectiles extends Collisionneur{
 
     private static final Manager mgr = Launcher.getManager();
 
-    public static Boolean isCollision(Hitbox h){
+    //return object pour pouvoir mettre des dégats
+    public static Object isCollision(Hitbox h){
         // Vérifie que la hitbox n'est pas une ligne
         if (h.getBRCornerX() == h.getTLCornerX() || h.getBRCornerY() == h.getTLCornerY()){
-            return false;
+            return null;
         }
         for( Obstacle o: mgr.getMonde().getLesObstacles()){
             if(isCollision(h, o.getHitbox())){
-                return true;
+                return o;
             }
         }
         var pp = true;
         for (Personnage p : mgr.getMonde().getLesPersonnages()) {
             if(!pp && isCollision(h, p.getHitbox())){
-                return true;
+                return p;
             }
             pp = false;
         }
         for (Projectile p : mgr.getMonde().getLesProjectiles()) {
             if(isCollision(h, p.getHitbox())){
-                return true;
+                return p;
             }
         }
-        return false;
+        return null;
     }
 
     public static Boolean isCollision(Hitbox h, Hitbox h2){

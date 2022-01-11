@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import launch.Launcher;
 import modele.obstacles.Obstacle;
+import modele.personnages.Personnage;
 import modele.projectiles.Projectile;
 
 import java.net.URL;
@@ -65,6 +66,22 @@ public class MainWindow{
             imgObs.setFitHeight(o.getHitbox().getHauteur());
             imgObs.setFitWidth(o.getHitbox().getLongueur());
             imgObs.setImage(new Image(o.getImage()));
+            mainPane.getChildren().add(imgObs);
+
+        }
+        boolean pp=true;
+        for (Personnage p: mgr.getMonde().getLesPersonnages()) {
+            if(pp){
+                pp=false;
+                continue;
+            }
+
+            ImageView imgObs= new ImageView();
+            imgObs.setX(p.getHitbox().getPosX());
+            imgObs.setY(p.getHitbox().getPosY());
+            imgObs.setFitHeight(p.getHitbox().getHauteur());
+            imgObs.setFitWidth(p.getHitbox().getLongueur());
+            imgObs.setImage(new Image(p.getImage()));
             mainPane.getChildren().add(imgObs);
 
         }

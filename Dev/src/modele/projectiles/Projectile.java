@@ -10,13 +10,15 @@ public class Projectile {
     private String image;
     private int maxDistance;
     private final int vitesse;
+    private int degats;
     private Hitbox hitbox;
 
-    public Projectile(String image, int maxDistance, int vitesse, Hitbox hitbox) {
+    public Projectile(String image, int maxDistance, int vitesse,int degats, Hitbox hitbox) {
         this.image = image;
         this.maxDistance = maxDistance;
         this.vitesse = vitesse;
         this.hitbox = hitbox;
+        this.degats = degats;
     }
 
     // Getter/Setter
@@ -32,6 +34,9 @@ public class Projectile {
     public int getVitesse() {
         return vitesse;
     }
+    public int getDegats() {
+        return degats;
+    }
     private void setImage(String image) {
         this.image = image;
     }
@@ -40,6 +45,9 @@ public class Projectile {
     }
     private void setHitbox(Hitbox hitbox) {
         this.hitbox = hitbox;
+    }
+    public void setDegats(int degats) {
+        this.degats = degats;
     }
 
     @Override
@@ -54,4 +62,5 @@ public class Projectile {
     public int hashCode() {
         return Objects.hash(image, maxDistance, vitesse, hitbox);
     }
+
 }
