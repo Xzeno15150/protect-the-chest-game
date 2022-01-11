@@ -2,11 +2,12 @@ package modele.projectiles;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import modele.ElementScene;
 import modele.collisions.Hitbox;
 
 import java.util.Objects;
 
-public class Projectile {
+public class Projectile implements ElementScene {
     private String image;
     private int maxDistance;
     private final int vitesse;

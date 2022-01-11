@@ -5,10 +5,10 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 import java.util.Objects;
 
-public class Hitbox {
+public class Hitbox implements Cloneable{
 
     // Properties
-    private final IntegerProperty longueur = new SimpleIntegerProperty();
+    private IntegerProperty longueur = new SimpleIntegerProperty();
     public int getLongueur() {
         return longueur.get();
     }
@@ -19,7 +19,7 @@ public class Hitbox {
         this.longueur.set(longueur);
     }
 
-    private final IntegerProperty hauteur = new SimpleIntegerProperty();
+    private IntegerProperty hauteur = new SimpleIntegerProperty();
     public int getHauteur() {
         return hauteur.get();
     }
@@ -30,7 +30,7 @@ public class Hitbox {
         this.hauteur.set(hauteur);
     }
 
-    private final IntegerProperty posX = new SimpleIntegerProperty();
+    private IntegerProperty posX = new SimpleIntegerProperty();
     public int getPosX() {
         return posX.get();
     }
@@ -41,7 +41,7 @@ public class Hitbox {
         return posX;
     }
 
-    private final IntegerProperty posY = new SimpleIntegerProperty();
+    private IntegerProperty posY = new SimpleIntegerProperty();
     public int getPosY() {
         return posY.get();
     }
@@ -110,5 +110,19 @@ public class Hitbox {
     @Override
     public int hashCode() {
         return Objects.hash(longueur, hauteur, posX, posY);
+    }
+
+    @Override
+    public Hitbox clone() {
+        try {
+            Hitbox clone = (Hitbox) super.clone();
+            clone.hauteur = new SimpleIntegerProperty(getHauteur());
+            clone.longueur = new SimpleIntegerProperty(getLongueur());
+            clone.posX = new SimpleIntegerProperty(getPosX());
+            clone.posY = new SimpleIntegerProperty(getPosY());
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

@@ -1,8 +1,9 @@
 package modele.obstacles;
 
+import modele.ElementScene;
 import modele.collisions.Hitbox;
 
-public class Obstacle {
+public class Obstacle implements ElementScene {
     private String img;
     private Hitbox hitbox;
 

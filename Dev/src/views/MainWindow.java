@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import launch.Launcher;
 import modele.obstacles.Obstacle;
@@ -84,6 +85,12 @@ public class MainWindow{
             imgObs.setImage(new Image(p.getImage()));
             mainPane.getChildren().add(imgObs);
 
+            Rectangle rect = new Rectangle();
+            rect.setFill(Paint.valueOf("transparent"));
+            rect.setStroke(Paint.valueOf("blue"));
+            rect.setHeight(p.getHitbox().getHauteur());
+            rect.setWidth(p.getHitbox().getLongueur());
+            mainPane.getChildren().add(rect);
         }
     }
 

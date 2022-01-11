@@ -2,14 +2,30 @@ package modele.personnages;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import modele.ElementScene;
 import modele.collisions.Hitbox;
 
-public abstract class Personnage {
+public class Personnage implements ElementScene, Cloneable{
     // Attributs
     private String image;
     private int sante;
-    private int santeMax;
+    private final int santeMax;
     private Hitbox hitbox;
+    private int vitesse;
+    public static final int DEFAULT_VITESSE = 3;
+
+    public Personnage(String skin, int santemax, Hitbox hb, int vitesse){
+        this.image = skin;
+        this.santeMax = santemax;
+        sante = santemax;
+        hitbox = hb;
+        this.vitesse = vitesse;
+    }
+
+    public Personnage(String skin, int santemax, Hitbox hb){
+        this(skin, santemax, hb, DEFAULT_VITESSE);
+    }
+
 
     public Hitbox getHitbox() {
         return hitbox;
@@ -25,9 +41,6 @@ public abstract class Personnage {
     }
     public Boolean isAlive(){ return getSante() > 0;}
 
-    protected void setSanteMax(int santeMax) {
-        this.santeMax = santeMax;
-    }
     protected void setHitbox(Hitbox hitbox) {
         this.hitbox = hitbox;
     }
@@ -40,6 +53,23 @@ public abstract class Personnage {
     public void setPos(int x, int y) {
         hitbox.setPosX(x);
         hitbox.setPosY(y);
+    }
+    public int getVitesse() {
+        return vitesse;
+    }
+    public void setVitesse(int vitesse) {
+        this.vitesse = vitesse;
+    }
+
+    @Override
+    public Personnage clone() {
+        try {
+            Personnage clone = (Personnage) super.clone();
+            clone.setHitbox(clone.getHitbox().clone());
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
 

@@ -2,6 +2,7 @@ package modele.collisions;
 
 import controllers.Manager;
 import launch.Launcher;
+import modele.ElementScene;
 import modele.obstacles.Obstacle;
 import modele.personnages.Personnage;
 import modele.projectiles.Projectile;
@@ -11,7 +12,7 @@ public class CollisionneurProjectiles extends Collisionneur{
     private static final Manager mgr = Launcher.getManager();
 
     //return object pour pouvoir mettre des dégats
-    public static Object isCollision(Hitbox h){
+    public static ElementScene isCollision(Hitbox h){
         // Vérifie que la hitbox n'est pas une ligne
         if (h.getBRCornerX() == h.getTLCornerX() || h.getBRCornerY() == h.getTLCornerY()){
             return null;
