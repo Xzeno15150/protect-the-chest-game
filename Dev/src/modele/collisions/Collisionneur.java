@@ -9,7 +9,6 @@ import modele.projectiles.Projectile;
 public class Collisionneur {
 
     private static final Manager mgr = Launcher.getManager();
-    private static final int PIX = 2;
 
     public static Boolean isCollisionPersonnage(Personnage personnage, int dir){
         // Vérifie que la hitbox n'est pas une ligne
@@ -53,28 +52,28 @@ public class Collisionneur {
          */
         switch (dir) {
             case 0 -> {
-                return personnage.getHitbox().getTLCornerY() + personnage.getVitesse() <= h2.getBRCornerY()
-                        && personnage.getHitbox().getBRCornerY() + personnage.getVitesse() >= h2.getTLCornerY()
-                        && personnage.getHitbox().getTLCornerX() > h2.getTLCornerX() - personnage.getHitbox().getLongueur() + PIX
-                        && personnage.getHitbox().getBRCornerX() < h2.getBRCornerX() + personnage.getHitbox().getLongueur() - PIX;
+                return personnage.getHitbox().getTLCornerY() - personnage.getVitesse() <= h2.getBRCornerY()
+                        && personnage.getHitbox().getBRCornerY() - personnage.getVitesse() >= h2.getTLCornerY()
+                        && personnage.getHitbox().getTLCornerX() > h2.getTLCornerX() - personnage.getHitbox().getLongueur()
+                        && personnage.getHitbox().getBRCornerX() < h2.getBRCornerX() + personnage.getHitbox().getLongueur();
             }
             case 1 -> {
                 return personnage.getHitbox().getBRCornerY() + personnage.getVitesse() >= h2.getTLCornerY()
                         && personnage.getHitbox().getTLCornerY() + personnage.getVitesse() <= h2.getBRCornerY()
-                        && personnage.getHitbox().getTLCornerX() > h2.getTLCornerX() - personnage.getHitbox().getLongueur() + PIX
-                        && personnage.getHitbox().getBRCornerX() < h2.getBRCornerX() + personnage.getHitbox().getLongueur() - PIX;
+                        && personnage.getHitbox().getTLCornerX() > h2.getTLCornerX() - personnage.getHitbox().getLongueur()
+                        && personnage.getHitbox().getBRCornerX() < h2.getBRCornerX() + personnage.getHitbox().getLongueur();
             }
             case 2 -> {
-                return personnage.getHitbox().getTLCornerX() + personnage.getVitesse() <= h2.getBRCornerX()
-                        && personnage.getHitbox().getBRCornerX() + personnage.getVitesse() >= h2.getTLCornerX()
-                        && personnage.getHitbox().getTLCornerY() > h2.getTLCornerY() - personnage.getHitbox().getHauteur()  + PIX
-                        && personnage.getHitbox().getBRCornerY() < h2.getBRCornerY() + personnage.getHitbox().getHauteur() - PIX;
+                return personnage.getHitbox().getTLCornerX() - personnage.getVitesse() <= h2.getBRCornerX()
+                        && personnage.getHitbox().getBRCornerX() - personnage.getVitesse() >= h2.getTLCornerX()
+                        && personnage.getHitbox().getTLCornerY() > h2.getTLCornerY() - personnage.getHitbox().getHauteur()
+                        && personnage.getHitbox().getBRCornerY() < h2.getBRCornerY() + personnage.getHitbox().getHauteur();
             }
             case 3 -> {
                 return personnage.getHitbox().getBRCornerX() + personnage.getVitesse() >= h2.getTLCornerX()
                         && personnage.getHitbox().getTLCornerX() + personnage.getVitesse() <= h2.getBRCornerX()
-                        && personnage.getHitbox().getTLCornerY() > h2.getTLCornerY() - personnage.getHitbox().getHauteur() + PIX
-                        && personnage.getHitbox().getBRCornerY() < h2.getBRCornerY() + personnage.getHitbox().getHauteur() - PIX;
+                        && personnage.getHitbox().getTLCornerY() > h2.getTLCornerY() - personnage.getHitbox().getHauteur()
+                        && personnage.getHitbox().getBRCornerY() < h2.getBRCornerY() + personnage.getHitbox().getHauteur();
             }
         }
         throw new IllegalArgumentException("La direction n'est pas bonne");

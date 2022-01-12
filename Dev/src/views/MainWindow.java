@@ -57,8 +57,7 @@ public class MainWindow{
         hitboxTest.heightProperty().bind(mgr.getPersonnagePrincipal().getHitbox().hauteurProperty());
         hitboxTest.widthProperty().bind(mgr.getPersonnagePrincipal().getHitbox().longueurProperty());
 
-        mgr.getMonde().longueurProperty().bind(Launcher.getStage().widthProperty());
-        mgr.getMonde().hauteurProperty().bind(Launcher.getStage().heightProperty());
+
 
         for (Obstacle o: mgr.getMonde().getLesObstacles()) {
             ImageView imgObs= new ImageView();

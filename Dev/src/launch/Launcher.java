@@ -39,9 +39,10 @@ public class Launcher extends Application {
         fxmlLoader.setController(mainWindow);
         fxmlLoader.setLocation(getClass().getResource("/fxml/MainWindow.fxml"));
         Parent racine = fxmlLoader.load();
-
         Scene s = new Scene(racine);
 
+        getManager().getMonde().longueurProperty().bind(s.widthProperty());
+        getManager().getMonde().hauteurProperty().bind(s.heightProperty());
         stage.setScene(s);
         stage.setTitle("Test");
         stage.show();
