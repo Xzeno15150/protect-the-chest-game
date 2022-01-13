@@ -1,44 +1,47 @@
 package views;
 
-import controllers.Manager;
 import javafx.collections.ListChangeListener;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import launch.Launcher;
-import modele.projectiles.Projectile;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import model.Manager;
+import model.metier.Entite;
+import model.metier.Projectile;
+import views.codeBehind.MainWindow;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ManagerVue {
 
+    private final Manager mgr;
     private final MainWindow mainWindow;
-    private final Map<Projectile, ImageView> projectileImageViewMap = new HashMap<>();
+    private final Map<Projectile, Rectangle> projectileRectangleMap = new HashMap<>();
 
-    public ManagerVue(MainWindow mainWindow) {
+    public ManagerVue(Manager mgr, MainWindow mainWindow){
+        this.mgr = mgr;
         this.mainWindow = mainWindow;
     }
 
-    public void addListenerToProjectileCollection() {
-        Manager mgr = Launcher.getManager();
-        mgr.getMonde().lesProjectilesProperty().addListener((ListChangeListener<? super Projectile>)  c -> {
-            while(c.next()) {
+
+    public void addListenerForProjectiles(){
+        mgr.getMonde().lesEntitesProperty().addListener((ListChangeListener<? super Entite>) c -> {
+            while (c.next()) {
                 if (c.wasAdded()) {
-                    Projectile p = c.getAddedSubList().get(0);
-                    ImageView imageView = new ImageView(new Image(p.getImage()));
-                    imageView.setFitHeight(p.getHitbox().getHauteur());
-                    imageView.setFitWidth(p.getHitbox().getLongueur());
-                    imageView.xProperty().bind(p.getHitbox().posXProperty());
-                    imageView.yProperty().bind(p.getHitbox().posYProperty());
-
-                    projectileImageViewMap.put(p, imageView);
-
-                    mainWindow.ajouterProjectile(imageView);
+                    Entite e = c.getAddedSubList().get(0);
+                    if (e instanceof Projectile) {
+                        Rectangle r = new Rectangle();
+                        r.setFill(Color.GREEN);
+                        mainWindow.createBinding(r, e);
+                        projectileRectangleMap.put((Projectile) e, r);
+                        mainWindow.getMainPane().getChildren().add(r);
+                    }
                 }
-                if (c.wasRemoved()){
-                    Projectile p = c.getRemoved().get(0);
-                    mainWindow.retirerProjectile(projectileImageViewMap.get(p));
-                    projectileImageViewMap.remove(p);
+                if (c.wasRemoved()) {
+                    Entite e = c.getRemoved().get(0);
+                    if (e instanceof Projectile) {
+                        mainWindow.getMainPane().getChildren().remove(projectileRectangleMap.get(e));
+                        projectileRectangleMap.remove(e);
+                    }
                 }
             }
         });
