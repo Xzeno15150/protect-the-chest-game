@@ -1,15 +1,16 @@
 package model;
 
 import javafx.scene.input.KeyCode;
+import model.boucles.Boucle60FPS;
+import model.deplacement.DeplaceurNormalVitesse2;
 import model.IA.IA;
+import model.IA.IASimple;
 import model.boucles.Boucle120FPS;
 import model.collisions.Collisionneur;
 import model.collisions.CollisionneurSimple;
-import model.collisions.gestionnaires.GestionnaireCollisions;
 import model.controls.KeyListener;
 import model.data.Loader;
 import model.data.Stub;
-import model.deplacement.Deplaceur;
 import model.deplacement.DeplaceurNormal;
 import model.metier.Monde;
 import model.metier.Projectile;
@@ -24,26 +25,33 @@ import java.util.Set;
 public class Manager {
 
     private final Loader loader = new Stub();
-    private Deplaceur deplaceur;
+    private DeplaceurNormal deplaceur;
     private Collisionneur collisionneur;
-    private final Monde monde;
+    private  Monde monde;
     private int lastShotTime;
 
-    private final KeyListener keyListener;
+    private  KeyListener keyListener;
 
-    public Manager(){
-
+    public void startGame() {
         monde = loader.load();
         collisionneur = new CollisionneurSimple(monde);
-        deplaceur = new DeplaceurNormal(collisionneur, monde);
+        deplaceur = new DeplaceurNormalVitesse2(collisionneur, monde);
 
         keyListener = new KeyListener(new HashSet<>());
 
         Set<Observer> observers = new HashSet<>();
         observers.add(new AnimateurProjectile(collisionneur, this));
         observers.add(new ObservateurPrincipal(this));
+        observers.add(new IASimple(monde, collisionneur));
         Thread mainBoucle = new Thread(new Boucle120FPS(observers, this));
         mainBoucle.start();
+
+        monde.hauteurProperty().addListener((observable, oldValue, newValue) ->
+                monde.getCoffre().setY(newValue.doubleValue() - monde.getCoffre().getHauteur())
+        );
+        monde.largeurProperty().addListener((observable, oldValue, newValue) ->
+                monde.getCoffre().setX((newValue.doubleValue() / 2) - monde.getCoffre().getLargeur() /2)
+        );
     }
 
     public void deplacerPersonnagePrincipal(){
@@ -55,11 +63,6 @@ public class Manager {
             deplaceur.deplacerGauche(monde.getPersonnagePrincipal());
         if (keyListener.getActiveKeys().contains(KeyCode.D))
             deplaceur.deplacerDroite(monde.getPersonnagePrincipal());
-    }
-
-    public void deplacerEnnemis(){
-        IA ia = new IA(monde, collisionneur);
-        ia.gererEnnemis();
     }
 
     public Monde getMonde() {

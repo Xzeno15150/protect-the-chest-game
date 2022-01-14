@@ -2,16 +2,17 @@ package views.codeBehind;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import launcher.Launch;
 import model.Manager;
 import model.metier.Entite;
 
-public class MainWindow {
+public class GameWindow {
 
     private final Manager mgr = Launch.getManager();
     @FXML
-    public AnchorPane mainPane;
+    public Pane mainPane;
     @FXML
     public Rectangle coffreVue;
     @FXML
@@ -36,7 +37,8 @@ public class MainWindow {
         rectangle.widthProperty().bind(e.largeurProperty());
     }
 
-    public AnchorPane getMainPane() {
+    public Pane getMainPane() {
         return mainPane;
     }
+
 }

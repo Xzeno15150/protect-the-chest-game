@@ -3,8 +3,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane fx:id="mainPane" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.Pane?>
+<Pane fx:id="mainPane" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
       <Rectangle fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="1" fx:id="coffreVue"/>
       <Rectangle fill="RED" stroke="BLACK" strokeType="INSIDE" fx:id="personnageVue"/>
-</AnchorPane>
+      <Rectangle fill="black" fx:id="ennemie"/>
+</Pane>

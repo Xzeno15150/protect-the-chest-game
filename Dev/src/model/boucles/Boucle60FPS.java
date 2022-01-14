@@ -5,14 +5,13 @@ import model.observers.Observer;
 
 import java.util.Set;
 
-public class Boucle120FPS extends BoucleDeJeu{
-
-    public Boucle120FPS(Set<Observer> observers, Manager mgr) {
-        super(observers, mgr);
+public class Boucle60FPS extends BoucleDeJeu{
+    public Boucle60FPS(Set<Observer> observers, Manager manager) {
+        super(observers, manager);
     }
 
     @Override
     protected int getFrameRate() {
-        return 120;
+        return 60;
     }
 }

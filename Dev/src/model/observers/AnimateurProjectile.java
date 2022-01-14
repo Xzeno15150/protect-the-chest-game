@@ -4,11 +4,11 @@ import javafx.application.Platform;
 import model.Manager;
 import model.collisions.Collisionneur;
 import model.collisions.gestionnaires.GestionnaireCollisionsHaut;
-import model.deplacement.Deplaceur;
+import model.deplacement.DeplaceurHaut;
 import model.metier.Entite;
 import model.metier.Projectile;
 
-public class AnimateurProjectile implements Observer { //Deplaceur
+public class AnimateurProjectile implements Observer, DeplaceurHaut {
 
     private static final int VITESSE = 3;
 
@@ -29,6 +29,7 @@ public class AnimateurProjectile implements Observer { //Deplaceur
         }
     }
 
+    @Override
     public boolean deplacerHaut(Entite e) {
         var gestionnaire = new GestionnaireCollisionsHaut(collisionneur, mgr.getMonde());
         if (!gestionnaire.isCollision(e, VITESSE)) {

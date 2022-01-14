@@ -11,6 +11,11 @@ public abstract class BoucleDeJeu implements Runnable{
     protected Set<Observer> observers;
     protected Manager mgr;
 
+    public BoucleDeJeu(Set<Observer> observers, Manager mgr) {
+        this.observers = observers;
+        this.mgr = mgr;
+    }
+
     protected abstract int getFrameRate();
 
     @Override
