@@ -8,7 +8,7 @@ import model.deplacement.Deplaceur;
 import model.metier.Entite;
 import model.metier.Projectile;
 
-public class AnimateurProjectile implements Observer, Deplaceur {
+public class AnimateurProjectile implements Observer { //Deplaceur
 
     private static final int VITESSE = 3;
 
@@ -29,26 +29,15 @@ public class AnimateurProjectile implements Observer, Deplaceur {
         }
     }
 
-    @Override
-    public void deplacerHaut(Entite e) {
+    public boolean deplacerHaut(Entite e) {
         var gestionnaire = new GestionnaireCollisionsHaut(collisionneur, mgr.getMonde());
         if (!gestionnaire.isCollision(e, VITESSE)) {
             e.setY(e.getY() - VITESSE);
+            return true;
         }
         else {
             mgr.getMonde().getLesEntites().remove(e);
+            return false;
         }
-    }
-
-    @Override
-    public void deplacerBas(Entite e) {
-    }
-
-    @Override
-    public void deplacerGauche(Entite e){
-    }
-
-    @Override
-    public void deplacerDroite(Entite e){
     }
 }

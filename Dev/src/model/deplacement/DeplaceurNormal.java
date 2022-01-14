@@ -17,34 +17,42 @@ public class DeplaceurNormal implements Deplaceur{
     }
 
     @Override
-    public void deplacerHaut(Entite e) {
+    public boolean deplacerHaut(Entite e) {
         var gestionnaire = new GestionnaireCollisionsHaut(collisionneur, monde);
         if (!gestionnaire.isCollision(e, VITESSE)) {
             e.setY(e.getY() - VITESSE);
+            return true;
         }
+        else return false;
     }
 
     @Override
-    public void deplacerBas(Entite e) {
+    public boolean deplacerBas(Entite e) {
         var gestionnaire = new GestionnaireCollisionsBas(collisionneur, monde);
         if (!gestionnaire.isCollision(e, VITESSE)) {
             e.setY(e.getY() + VITESSE);
+            return true;
         }
+        else return false;
     }
 
     @Override
-    public void deplacerGauche(Entite e) {
+    public boolean deplacerGauche(Entite e) {
         var gestionnaire = new GestionnaireCollisionsGauche(collisionneur, monde);
         if (!gestionnaire.isCollision(e, VITESSE)) {
             e.setX(e.getX() - VITESSE);
+            return true;
         }
+        else return false;
     }
 
     @Override
-    public void deplacerDroite(Entite e) {
+    public boolean deplacerDroite(Entite e) {
         var gestionnaire = new GestionnaireCollisionsDroite(collisionneur, monde);
         if (!gestionnaire.isCollision(e, VITESSE)) {
             e.setX(e.getX() + VITESSE);
+            return true;
         }
+        else return false;
     }
 }

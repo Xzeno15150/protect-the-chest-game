@@ -1,6 +1,7 @@
 package model;
 
 import javafx.scene.input.KeyCode;
+import model.IA.IA;
 import model.boucles.Boucle120FPS;
 import model.collisions.Collisionneur;
 import model.collisions.CollisionneurSimple;
@@ -54,6 +55,11 @@ public class Manager {
             deplaceur.deplacerGauche(monde.getPersonnagePrincipal());
         if (keyListener.getActiveKeys().contains(KeyCode.D))
             deplaceur.deplacerDroite(monde.getPersonnagePrincipal());
+    }
+
+    public void deplacerEnnemis(){
+        IA ia = new IA(monde, collisionneur);
+        ia.gererEnnemis();
     }
 
     public Monde getMonde() {

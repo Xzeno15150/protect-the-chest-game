@@ -14,6 +14,7 @@ public class ObservateurPrincipal implements Observer{
     public void update() {
         Platform.runLater(() -> {
             mgr.deplacerPersonnagePrincipal();
+            mgr.deplacerEnnemis();
             mgr.tirer();
         });
     }

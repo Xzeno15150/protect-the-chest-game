@@ -16,7 +16,8 @@ public class MainWindow {
     public Rectangle coffreVue;
     @FXML
     public Rectangle personnageVue;
-
+    @FXML
+    public Rectangle ennemie;
 
     @FXML
     public void initialize(){
@@ -25,6 +26,7 @@ public class MainWindow {
 
         createBinding(coffreVue, mgr.getMonde().getCoffre());
         createBinding(personnageVue, mgr.getMonde().getPersonnagePrincipal());
+        createBinding(ennemie, mgr.getMonde().getLesEntites().get(2));
     }
 
     public void createBinding(Rectangle rectangle, Entite e) {
