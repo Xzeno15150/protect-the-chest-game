@@ -19,7 +19,7 @@ import java.util.Map;
 public class ManagerVue {
 
     private final Manager mgr;
-    private final GameWindow gameWindow;
+    private GameWindow gameWindow;
     private final Map<Projectile, Rectangle> projectileRectangleMap = new HashMap<>();
 
     public ManagerVue(Manager mgr){
@@ -53,7 +53,7 @@ public class ManagerVue {
 
     public void jouer() {
         mgr.startGame();
-        var gameWindow = new GameWindow();
+        this.gameWindow = new GameWindow();
 
         var loader = new FXMLLoader();
         loader.setController(gameWindow);

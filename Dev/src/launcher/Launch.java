@@ -22,8 +22,7 @@ public class Launch extends Application {
         Launch.primaryStage = primaryStage;
         mgr = new Manager();
         managerVue = new ManagerVue(mgr);
-
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/GameWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainMenu.fxml"));
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
