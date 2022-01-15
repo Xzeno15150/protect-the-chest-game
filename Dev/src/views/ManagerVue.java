@@ -52,13 +52,16 @@ public class ManagerVue {
     }
 
     public void jouer() {
+        mgr.startGame();
         var gameWindow = new GameWindow();
 
         var loader = new FXMLLoader();
         loader.setController(gameWindow);
         Parent root = null;
+
         try {
-            root = loader.load(getClass().getResource("/fxml/GameWindow"));
+
+            root = loader.load(getClass().getResource("/fxml/GameWindow.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -66,7 +69,6 @@ public class ManagerVue {
 
         addListenerForEntites();
         Launch.getPrimaryStage().setScene(new Scene(root));
-        mgr.startGame();
 
         // TODO Modifier les vues pour que se soit des fxroot, et ajouter une vue contenant ces fxroot pour faire le changement
     }

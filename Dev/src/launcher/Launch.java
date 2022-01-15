@@ -23,13 +23,13 @@ public class Launch extends Application {
         mgr = new Manager();
         managerVue = new ManagerVue(mgr);
 
-
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/GameWindow.fxml"));
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Test");
         primaryStage.show();
+
     }
 
     public static Stage getPrimaryStage() {
