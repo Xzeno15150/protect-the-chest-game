@@ -4,8 +4,10 @@ import javafx.collections.ListChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import launcher.Launch;
 import model.Manager;
 import model.metier.Entite;
@@ -24,7 +26,6 @@ public class ManagerVue {
 
     public ManagerVue(Manager mgr){
         this.mgr = mgr;
-        gameWindow = new GameWindow();
     }
 
     private void addListenerForEntites(){
@@ -51,10 +52,14 @@ public class ManagerVue {
         });
     }
 
+    public void quitter(Button btn){
+        Stage stage = (Stage) btn.getScene().getWindow();
+        stage.close();
+    }
+
     public void jouer() {
         mgr.startGame();
-        this.gameWindow = new GameWindow();
-
+        gameWindow = new GameWindow();
         var loader = new FXMLLoader();
         loader.setController(gameWindow);
         Parent root = null;
@@ -65,7 +70,6 @@ public class ManagerVue {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         addListenerForEntites();
         Launch.getPrimaryStage().setScene(new Scene(root));
