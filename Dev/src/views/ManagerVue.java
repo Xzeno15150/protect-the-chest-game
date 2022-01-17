@@ -74,6 +74,6 @@ public class ManagerVue {
         addListenerForEntites();
         Launch.getPrimaryStage().setScene(new Scene(root));
 
-        // TODO Modifier les vues pour que se soit des fxroot, et ajouter une vue contenant ces fxroot pour faire le changement
+        // TODO : Corriger projectile null
     }
 }

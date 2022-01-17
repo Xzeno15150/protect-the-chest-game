@@ -2,6 +2,7 @@ package model.IA;
 
 import javafx.application.Platform;
 import model.collisions.Collisionneur;
+import model.collisions.CollisionneurSimple;
 import model.deplacement.DeplaceurDroite;
 import model.deplacement.DeplaceurNormal;
 import model.deplacement.DeplaceurNormalVitesse1;
@@ -11,16 +12,18 @@ import model.observers.Observer;
 import java.util.List;
 
 public class IASimple implements IA, Observer {
-    private List<Entite> lesEntites;
-    private Monde m;
-    private Obstacle coffre;
-    private DeplaceurNormal deplaceur;
+    private final List<Entite> lesEntites;
+    private final Monde m;
+    private final Obstacle coffre;
+    private final DeplaceurNormal deplaceur;
+    Collisionneur collisionneur;
 
     public IASimple(Monde m, Collisionneur collisionneur){
         this.m=m;
         lesEntites= m.getLesEntites();
         coffre= m.getCoffre();
         deplaceur= new DeplaceurNormalVitesse1(collisionneur,m);
+
     }
 
     @Override
@@ -33,17 +36,23 @@ public class IASimple implements IA, Observer {
     }
 
     private void deplacerEnnemis(Personnage p) {
-        if (p.getX() + (p.getLargeur() / 2) < coffre.getX() + (coffre.getLargeur() / 2)) {
-            deplaceur.deplacerDroite(p);
+        if (p.getX() + (p.getLargeur() / 2) < coffre.getX() + (coffre.getLargeur() / 2) && deplaceur.deplacerBas(p)) {
+            if(deplaceur.deplacerDroite(p));
+                return;
         }
-        if (p.getX() + (p.getLargeur() / 2) > coffre.getX() + (coffre.getLargeur() / 2)) {
-            deplaceur.deplacerGauche(p);
+        if (p.getX() + (p.getLargeur() / 2) > coffre.getX() + (coffre.getLargeur() / 2) && deplaceur.deplacerBas(p)) {
+            if(deplaceur.deplacerGauche(p));
+                return;
         }
         if (p.getY() + (p.getHauteur() / 2) < coffre.getY() + (coffre.getHauteur() / 2)){
-            deplaceur.deplacerBas(p);
+            if(deplaceur.deplacerBas(p))
+                return;
+            else deplaceur.deplacerGauche(p);
         }
         if(p.getY()+(p.getHauteur()/2)  > coffre.getY()+(coffre.getHauteur()/2)) {
-            deplaceur.deplacerHaut(p);
+            if(deplaceur.deplacerHaut(p))
+                return;
+            else deplaceur.deplacerDroite(p);
         }
     }
 
