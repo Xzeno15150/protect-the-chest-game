@@ -1,6 +1,7 @@
 package views.codeBehind;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
@@ -39,6 +40,14 @@ public class GameWindow {
 
     public Pane getMainPane() {
         return mainPane;
+    }
+
+    public void removeNode(Node n) {
+        mainPane.getChildren().remove(n);
+    }
+
+    public void addNode(Node n) {
+        mainPane.getChildren().add(n);
     }
 
 }

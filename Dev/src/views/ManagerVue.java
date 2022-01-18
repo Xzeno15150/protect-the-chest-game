@@ -38,13 +38,13 @@ public class ManagerVue {
                         r.setFill(Color.GREEN);
                         gameWindow.createBinding(r, e);
                         projectileRectangleMap.put((Projectile) e, r);
-                        gameWindow.getMainPane().getChildren().add(r);
+                        gameWindow.addNode(r);
                     }
                 }
                 if (c.wasRemoved()) {
                     Entite e = c.getRemoved().get(0);
                     if (e instanceof Projectile) {
-                        gameWindow.getMainPane().getChildren().remove(projectileRectangleMap.get(e));
+                        gameWindow.removeNode(projectileRectangleMap.get(e));
                         projectileRectangleMap.remove(e);
                     }
                 }
@@ -57,23 +57,17 @@ public class ManagerVue {
         stage.close();
     }
 
-    public void jouer() {
+    public void jouer() throws IOException {
         mgr.startGame();
+
+        var loader = new FXMLLoader(getClass().getResource("/fxml/GameWindow.fxml"));
+        // gameWindow = loader.getController();
         gameWindow = new GameWindow();
-        var loader = new FXMLLoader();
         loader.setController(gameWindow);
-        Parent root = null;
-
-        try {
-
-            root = loader.load(getClass().getResource("/fxml/GameWindow.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Parent root;
+        root = loader.load();
 
         addListenerForEntites();
         Launch.getPrimaryStage().setScene(new Scene(root));
-
-        // TODO : Corriger projectile null
     }
 }
