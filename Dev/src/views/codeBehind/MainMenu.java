@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 import launcher.Launch;
 import views.ManagerVue;
 
+import java.io.IOException;
+
 
 public class MainMenu {
 
@@ -19,7 +21,7 @@ public class MainMenu {
 
 
     @FXML
-    public void onActionPlayButton(ActionEvent actionEvent) {
+    public void onActionPlayButton(ActionEvent actionEvent) throws IOException {
         managerVue.jouer();
     }
 
