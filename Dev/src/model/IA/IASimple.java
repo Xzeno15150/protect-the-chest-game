@@ -33,6 +33,9 @@ public class IASimple implements IA, Observer {
                 deplacerEnnemis((Personnage) e);
             }
         }
+        for (Entite e: deplaceur.getATuer()) {
+            m.tuer((Ennemi) e);
+        }
     }
 
     private void deplacerEnnemis(Personnage p) {

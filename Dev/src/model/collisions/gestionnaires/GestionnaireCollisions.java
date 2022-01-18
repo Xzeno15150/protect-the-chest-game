@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class GestionnaireCollisions {
-
+    protected List<Entite> aTuer;
     protected Collisionneur collisionneur;
     protected Manager manager;
 
@@ -18,8 +18,7 @@ public abstract class GestionnaireCollisions {
     }
 
     public boolean isCollision(Entite entite, double vitesse) {
-        List<Entite> aTuer = new ArrayList<>();
-        boolean collision= false;
+        aTuer = new ArrayList<>();
         for (Entite e : manager.getMonde().getLesEntites()) {
             if (!e.equals(entite)){
                 if (isDirectionCollision(entite, e, vitesse)) {
@@ -27,17 +26,19 @@ public abstract class GestionnaireCollisions {
                         if(e instanceof Projectile){
                             aTuer.add(entite);
                         }
-                        if(e instanceof Personnage)
+                        if(e.equals(manager.getMonde().getPersonnagePrincipal()))
+                            aTuer.add(entite);
+                        if(e.equals(manager.getMonde().getCoffre()))
                             aTuer.add(entite);
                     }
-                    collision= true;
+                    return true;
                 }
             }
         }
-        for (Entite e :  aTuer){
-            manager.tuer((Ennemi) e);
-        }
-        return collision;
+        return false;
+    }
+    public List<Entite> getEntiteATuer(){
+        return aTuer;
     }
 
     protected abstract boolean isDirectionCollision(Entite entite, Entite e, double vitesse);
