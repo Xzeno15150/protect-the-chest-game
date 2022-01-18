@@ -2,8 +2,10 @@ package model.collisions.gestionnaires;
 
 import model.Manager;
 import model.collisions.Collisionneur;
-import model.metier.Entite;
-import model.metier.Monde;
+import model.metier.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class GestionnaireCollisions {
 
@@ -16,14 +18,26 @@ public abstract class GestionnaireCollisions {
     }
 
     public boolean isCollision(Entite entite, double vitesse) {
+        List<Entite> aTuer = new ArrayList<>();
+        boolean collision= false;
         for (Entite e : manager.getMonde().getLesEntites()) {
             if (!e.equals(entite)){
                 if (isDirectionCollision(entite, e, vitesse)) {
-                    return true;
+                    if(entite instanceof Ennemi){
+                        if(e instanceof Projectile){
+                            aTuer.add(entite);
+                        }
+                        if(e instanceof Personnage)
+                            aTuer.add(entite);
+                    }
+                    collision= true;
                 }
             }
         }
-        return false;
+        for (Entite e :  aTuer){
+            manager.tuer((Ennemi) e);
+        }
+        return collision;
     }
 
     protected abstract boolean isDirectionCollision(Entite entite, Entite e, double vitesse);

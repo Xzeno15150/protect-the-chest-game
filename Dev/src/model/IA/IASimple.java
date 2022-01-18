@@ -37,11 +37,11 @@ public class IASimple implements IA, Observer {
 
     private void deplacerEnnemis(Personnage p) {
         if (p.getX() + (p.getLargeur() / 2) < coffre.getX() + (coffre.getLargeur() / 2) && deplaceur.deplacerBas(p)) {
-            if(deplaceur.deplacerDroite(p));
+            if(deplaceur.deplacerDroite(p))
                 return;
         }
         if (p.getX() + (p.getLargeur() / 2) > coffre.getX() + (coffre.getLargeur() / 2) && deplaceur.deplacerBas(p)) {
-            if(deplaceur.deplacerGauche(p));
+            if(deplaceur.deplacerGauche(p))
                 return;
         }
         if (p.getY() + (p.getHauteur() / 2) < coffre.getY() + (coffre.getHauteur() / 2)){
