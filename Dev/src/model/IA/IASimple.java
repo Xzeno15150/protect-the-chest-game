@@ -1,6 +1,7 @@
 package model.IA;
 
 import javafx.application.Platform;
+import model.Manager;
 import model.collisions.Collisionneur;
 import model.collisions.CollisionneurSimple;
 import model.deplacement.DeplaceurDroite;
@@ -13,15 +14,14 @@ import java.util.List;
 
 public class IASimple implements IA, Observer {
     private final List<Entite> lesEntites;
-    private final Monde m;
+    private final Manager m;
     private final Obstacle coffre;
     private final DeplaceurNormal deplaceur;
-    Collisionneur collisionneur;
 
-    public IASimple(Monde m, Collisionneur collisionneur){
+    public IASimple(Manager m, Collisionneur collisionneur){
         this.m=m;
-        lesEntites= m.getLesEntites();
-        coffre= m.getCoffre();
+        lesEntites= m.getMonde().getLesEntites();
+        coffre= m.getMonde().getCoffre();
         deplaceur= new DeplaceurNormalVitesse1(collisionneur,m);
 
     }

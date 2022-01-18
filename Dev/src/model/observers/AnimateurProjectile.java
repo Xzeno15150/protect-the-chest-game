@@ -31,7 +31,7 @@ public class AnimateurProjectile implements Observer, DeplaceurHaut {
 
     @Override
     public boolean deplacerHaut(Entite e) {
-        var gestionnaire = new GestionnaireCollisionsHaut(collisionneur, mgr.getMonde());
+        var gestionnaire = new GestionnaireCollisionsHaut(collisionneur, mgr);
         if (!gestionnaire.isCollision(e, VITESSE)) {
             e.setY(e.getY() - VITESSE);
             return true;

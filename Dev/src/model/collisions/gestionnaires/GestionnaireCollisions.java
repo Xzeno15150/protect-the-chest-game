@@ -1,5 +1,6 @@
 package model.collisions.gestionnaires;
 
+import model.Manager;
 import model.collisions.Collisionneur;
 import model.metier.Entite;
 import model.metier.Monde;
@@ -7,15 +8,15 @@ import model.metier.Monde;
 public abstract class GestionnaireCollisions {
 
     protected Collisionneur collisionneur;
-    protected Monde monde;
+    protected Manager manager;
 
-    public GestionnaireCollisions(Collisionneur collisionneur, Monde monde){
+    public GestionnaireCollisions(Collisionneur collisionneur, Manager manager){
         this.collisionneur = collisionneur;
-        this.monde = monde;
+        this.manager = manager;
     }
 
     public boolean isCollision(Entite entite, double vitesse) {
-        for (Entite e : monde.getLesEntites()) {
+        for (Entite e : manager.getMonde().getLesEntites()) {
             if (!e.equals(entite)){
                 if (isDirectionCollision(entite, e, vitesse)) {
                     return true;

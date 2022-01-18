@@ -1,12 +1,13 @@
 package model.collisions.gestionnaires;
 
+import model.Manager;
 import model.collisions.Collisionneur;
 import model.metier.Entite;
 import model.metier.Monde;
 
 public class GestionnaireCollisionsBas extends GestionnaireCollisions{
-    public GestionnaireCollisionsBas(Collisionneur collisionneur, Monde monde) {
-        super(collisionneur, monde);
+    public GestionnaireCollisionsBas(Collisionneur collisionneur, Manager manager) {
+        super(collisionneur, manager);
     }
 
     @Override

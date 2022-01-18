@@ -12,6 +12,7 @@ import model.controls.KeyListener;
 import model.data.Loader;
 import model.data.Stub;
 import model.deplacement.DeplaceurNormal;
+import model.metier.Ennemi;
 import model.metier.Monde;
 import model.metier.Projectile;
 import model.observers.ObservateurPrincipal;
@@ -35,14 +36,14 @@ public class Manager {
     public void startGame() {
         monde = loader.load();
         collisionneur = new CollisionneurSimple(monde);
-        deplaceur = new DeplaceurNormalVitesse2(collisionneur, monde);
+        deplaceur = new DeplaceurNormalVitesse2(collisionneur, this);
 
         keyListener = new KeyListener(new HashSet<>());
 
         Set<Observer> observers = new HashSet<>();
         observers.add(new AnimateurProjectile(collisionneur, this));
         observers.add(new ObservateurPrincipal(this));
-        observers.add(new IASimple(monde, collisionneur));
+        observers.add(new IASimple(this, collisionneur));
         Thread mainBoucle = new Thread(new Boucle120FPS(observers, this));
         mainBoucle.start();
 
@@ -65,10 +66,6 @@ public class Manager {
             deplaceur.deplacerDroite(monde.getPersonnagePrincipal());
     }
 
-    public Monde getMonde() {
-        return monde;
-    }
-
     public void tirer() {
         if (keyListener.getActiveKeys().contains(KeyCode.SPACE)) {
             var newShotTime = LocalDateTime.now().getSecond();
@@ -78,6 +75,18 @@ public class Manager {
                 monde.addEntite(p);
             }
         }
+    }
+
+    public void tuer(Ennemi ennemi) {
+        monde.removeEntite(ennemi);
+    }
+
+    public void retirerVie() {
+
+    }
+
+    public Monde getMonde() {
+        return monde;
     }
     public boolean isGameRunning() {
         return true;

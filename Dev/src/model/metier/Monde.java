@@ -11,8 +11,6 @@ import java.util.List;
 
 public class Monde {
 
-
-
     private final Personnage personnagePrincipal;
     private final Obstacle coffre;
 
@@ -66,5 +64,9 @@ public class Monde {
     public void addEntite(Entite entite) {
         if (!lesEntites.contains(entite))
             lesEntites.add(entite);
+    }
+
+    public void removeEntite(Entite entite) {
+        lesEntites.remove(entite);
     }
 }
