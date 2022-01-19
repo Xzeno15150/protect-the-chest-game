@@ -1,12 +1,11 @@
 package model.boucles;
 
-import launcher.Launch;
 import model.Manager;
 import model.observers.Observer;
 
 import java.util.Set;
 
-public abstract class BoucleDeJeu implements Runnable{
+public abstract class  BoucleDeJeu implements Runnable{
 
     protected Set<Observer> observers;
     protected Manager mgr;
@@ -24,7 +23,6 @@ public abstract class BoucleDeJeu implements Runnable{
             try {
                 Thread.sleep(1000 / getFrameRate());
                 notifier();
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

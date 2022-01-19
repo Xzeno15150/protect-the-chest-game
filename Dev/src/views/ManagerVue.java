@@ -57,13 +57,11 @@ public class ManagerVue {
     public void quitter(Button btn){
         Stage stage = (Stage) btn.getScene().getWindow();
         stage.close();
+        mgr.setGameRunning(false);
     }
 
     public void jouer() throws IOException {
-        mgr.startGame();
-
         var loader = new FXMLLoader(getClass().getResource("/fxml/GameWindow.fxml"));
-        // gameWindow = loader.getController();
         gameWindow = new GameWindow();
         loader.setController(gameWindow);
         Parent root;
@@ -71,5 +69,6 @@ public class ManagerVue {
 
         addListenerForEntites();
         Launch.getPrimaryStage().setScene(new Scene(root));
+        mgr.startGame();
     }
 }

@@ -21,6 +21,7 @@ public class Launch extends Application {
     public void start(Stage primaryStage) throws Exception {
         Launch.primaryStage = primaryStage;
         mgr = new Manager();
+        mgr.init();
         managerVue = new ManagerVue(mgr);
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainMenu.fxml"));
 

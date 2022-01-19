@@ -2,6 +2,7 @@ package views.codeBehind;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
@@ -9,15 +10,18 @@ import launcher.Launch;
 import model.Manager;
 import model.metier.Entite;
 
+
 public class GameWindow {
 
     private final Manager mgr = Launch.getManager();
     @FXML
-    public Pane mainPane;
+    private Pane mainPane;
     @FXML
-    public Rectangle coffreVue;
+    private Rectangle coffreVue;
     @FXML
-    public Rectangle personnageVue;
+    private Rectangle personnageVue;
+    @FXML
+    private Label nbVie;
 
     @FXML
     public void initialize(){
@@ -26,6 +30,7 @@ public class GameWindow {
 
         createBinding(coffreVue, mgr.getMonde().getCoffre());
         createBinding(personnageVue, mgr.getMonde().getPersonnagePrincipal());
+        // TODO Bind nbVie sur le nbVie de manager
     }
 
     public void createBinding(Rectangle rectangle, Entite e) {

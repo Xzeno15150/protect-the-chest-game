@@ -2,7 +2,11 @@ package model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.ListChangeListener;
+import javafx.collections.SetChangeListener;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import launcher.Launch;
 import model.boucles.Boucle60FPS;
 import model.deplacement.DeplaceurNormalVitesse2;
 import model.IA.IA;
@@ -15,6 +19,7 @@ import model.data.Loader;
 import model.data.Stub;
 import model.deplacement.DeplaceurNormal;
 import model.metier.Ennemi;
+import model.metier.Entite;
 import model.metier.Monde;
 import model.metier.Projectile;
 import model.observers.ObservateurPrincipal;
@@ -27,7 +32,7 @@ import java.util.Set;
 
 public class Manager {
 
-    private final IntegerProperty numManche= new SimpleIntegerProperty(1);
+    private final IntegerProperty numManche= new SimpleIntegerProperty(0);
         public int getNumManche() {
         return numManche.get();
     }
@@ -58,13 +63,35 @@ public class Manager {
 
     private  KeyListener keyListener;
 
-    public void startGame() {
+    public void init() {
+
         monde = loader.load();
         setNbVie(3);
         collisionneur = new CollisionneurSimple(monde);
         deplaceur = new DeplaceurNormalVitesse2(collisionneur, this);
 
         keyListener = new KeyListener(new HashSet<>());
+        monde.hauteurProperty().addListener((observable, oldValue, newValue) ->
+                monde.getCoffre().setY(newValue.doubleValue() - monde.getCoffre().getHauteur())
+        );
+        monde.largeurProperty().addListener((observable, oldValue, newValue) ->
+                monde.getCoffre().setX((newValue.doubleValue() / 2) - monde.getCoffre().getLargeur() /2)
+        );
+
+        monde.lesEntitesProperty().addListener((ListChangeListener<? super Entite>)  c -> {
+            while (c.next()){
+                if (c.wasRemoved()) {
+                    for (Entite e :
+                            monde.getLesEntites()) {
+                        if (e instanceof Ennemi) return;
+                    }
+                    mancheSuivante();
+                }
+            }
+        });
+    }
+
+    public void startGame() {
 
         Set<Observer> observers = new HashSet<>();
         observers.add(new AnimateurProjectile(collisionneur, this));
@@ -73,23 +100,23 @@ public class Manager {
         Thread mainBoucle = new Thread(new Boucle120FPS(observers, this));
         mainBoucle.start();
 
-        monde.hauteurProperty().addListener((observable, oldValue, newValue) ->
-                monde.getCoffre().setY(newValue.doubleValue() - monde.getCoffre().getHauteur())
-        );
-        monde.largeurProperty().addListener((observable, oldValue, newValue) ->
-                monde.getCoffre().setX((newValue.doubleValue() / 2) - monde.getCoffre().getLargeur() /2)
-        );
+        mancheSuivante();
+
     }
 
     public void deplacerPersonnagePrincipal(){
-        if (keyListener.getActiveKeys().contains(KeyCode.Z))
+        if (keyListener.getActiveKeys().contains(KeyCode.Z)) {
             deplaceur.deplacerHaut(monde.getPersonnagePrincipal());
-        if (keyListener.getActiveKeys().contains(KeyCode.S))
+        }
+        if (keyListener.getActiveKeys().contains(KeyCode.S)) {
             deplaceur.deplacerBas(monde.getPersonnagePrincipal());
-        if (keyListener.getActiveKeys().contains(KeyCode.Q))
+        }
+        if (keyListener.getActiveKeys().contains(KeyCode.Q)) {
             deplaceur.deplacerGauche(monde.getPersonnagePrincipal());
-        if (keyListener.getActiveKeys().contains(KeyCode.D))
+        }
+        if (keyListener.getActiveKeys().contains(KeyCode.D)) {
             deplaceur.deplacerDroite(monde.getPersonnagePrincipal());
+        }
     }
 
     public void tirer() {
@@ -105,6 +132,7 @@ public class Manager {
 
     public void mancheSuivante() {
         setNumManche(getNumManche()+1);
+        monde.createRandomPosEnnemi();
     }
 
     public void tuer(Ennemi ennemi) {
@@ -114,6 +142,7 @@ public class Manager {
     public void retirerVie() {
         if (getNbVie() == 1) {
             gameRunning = false;
+            System.out.println("Game over !");
             return;
         }
         setNbVie(getNbVie() - 1);
@@ -124,5 +153,9 @@ public class Manager {
     }
     public boolean isGameRunning() {
         return gameRunning;
+    }
+
+    public void setGameRunning(boolean gameRunning) {
+        this.gameRunning = gameRunning;
     }
 }

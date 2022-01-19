@@ -76,10 +76,10 @@ public class Monde {
 
     public void createRandomPosEnnemi() {
         double x, y;
-        x = Math.random() * (getLargeur()-TAILLE_ENNEMI*2);
+        x = Math.random() * (getLargeur()-TAILLE_ENNEMI-10);
         y = Math.random() * (getHauteur()/5) + TAILLE_ENNEMI+5;
         while(!addEntite(new Ennemi(x,y,TAILLE_ENNEMI))){
-            x = Math.random() * (getLargeur()-TAILLE_ENNEMI*2);
+            x = Math.random() * (getLargeur()-TAILLE_ENNEMI-5);
             y = Math.random() * (getHauteur()/5) + TAILLE_ENNEMI+5;
         }
     }
