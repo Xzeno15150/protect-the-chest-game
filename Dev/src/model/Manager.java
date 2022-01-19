@@ -1,6 +1,8 @@
 package model;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.SetChangeListener;
@@ -54,7 +56,17 @@ public class Manager {
         this.nbVie.set(nbVie);
     }
 
-    private boolean gameRunning = true;
+    private final BooleanProperty gameRunning= new SimpleBooleanProperty(true);
+        public BooleanProperty getGameRunningProperty(){
+            return gameRunning;
+        }
+        public void setGameRunning(boolean gameRunning) {
+            this.gameRunning.set(gameRunning);
+        }
+        public boolean isGameRunning() {
+        return gameRunning.get();
+    }
+
     private final Loader loader = new Stub();
     private DeplaceurNormal deplaceur;
     private Collisionneur collisionneur;
@@ -141,7 +153,7 @@ public class Manager {
 
     public void retirerVie() {
         if (getNbVie() == 0) {
-            gameRunning = false;
+            setGameRunning(false);
             System.out.println("Game over !");
             return;
         }
@@ -150,12 +162,5 @@ public class Manager {
 
     public Monde getMonde() {
         return monde;
-    }
-    public boolean isGameRunning() {
-        return gameRunning;
-    }
-
-    public void setGameRunning(boolean gameRunning) {
-        this.gameRunning = gameRunning;
     }
 }

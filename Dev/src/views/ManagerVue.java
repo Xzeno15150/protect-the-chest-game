@@ -1,5 +1,7 @@
 package views;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +15,7 @@ import model.Manager;
 import model.metier.Ennemi;
 import model.metier.Entite;
 import model.metier.Projectile;
+import views.codeBehind.GameOver;
 import views.codeBehind.GameWindow;
 
 import java.io.IOException;
@@ -70,5 +73,14 @@ public class ManagerVue {
         addListenerForEntites();
         Launch.getPrimaryStage().setScene(new Scene(root));
         mgr.startGame();
+        //gameOver();
+    }
+
+    public void gameOver() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/GameOver.fxml"));
+        Stage primaryStage = Launch.getPrimaryStage();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }

@@ -1,9 +1,17 @@
 BorderPane {
     -fx-background-color: #1e1e31;
 }
-Text{
+Pane{
+    -fx-background-color: #1e1e31;
+}
+
+.texteMenu{
     -fx-text-alignment: center;
-    -fx-fill: white ;
-    -fx-font-size: 30px;
     -fx-font-weight:  bold;
+}
+
+.texteBlanc{
+    -fx-fill: white ;
+    -fx-font-family: "Agency FB";
+    -fx-font-size:30;
 }

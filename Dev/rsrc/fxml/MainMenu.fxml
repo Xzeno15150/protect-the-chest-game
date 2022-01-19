@@ -8,11 +8,14 @@
 
 <?import javafx.scene.text.Text?>
 <BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" prefWidth="1080" prefHeight="720" fx:controller="views.codeBehind.MainMenu" stylesheets="/fxml/css/style.css">
+   <top>
+      <VBox alignment="CENTER">
+         <Text text="Protect the Trunk" styleClass="texteBlanc, texteMenu" style="-fx-font-size: 50; -fx-underline: true"/>
+         <Text styleClass="texteMenu, texteBlanc" text="Protégez votre coffre !"/>
+      </VBox>
+   </top>
    <center>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
-         <Text>
-            Protégez votre coffre !
-         </Text>
          <children>
             <Button alignment="CENTER" mnemonicParsing="false" text="Jouer" textAlignment="CENTER" VBox.vgrow="ALWAYS"
                     fx:id="playBtn" onAction="#onActionPlayButton">
