@@ -59,7 +59,7 @@ public class Manager {
     private DeplaceurNormal deplaceur;
     private Collisionneur collisionneur;
     private  Monde monde;
-    private int lastShotTime;
+    private long lastShotTime;
 
     private  KeyListener keyListener;
 
@@ -121,8 +121,8 @@ public class Manager {
 
     public void tirer() {
         if (keyListener.getActiveKeys().contains(KeyCode.SPACE)) {
-            var newShotTime = LocalDateTime.now().getSecond();
-            if (newShotTime - lastShotTime > 0.25) {
+            var newShotTime = System.currentTimeMillis();
+            if (newShotTime - lastShotTime > 750) {
                 lastShotTime = newShotTime;
                 Projectile p = new Projectile(monde.getPersonnagePrincipal().getX(), monde.getPersonnagePrincipal().getY() - 40, 30, 10);
                 monde.addEntite(p);
