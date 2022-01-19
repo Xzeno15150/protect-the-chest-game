@@ -3,9 +3,9 @@ package views.codeBehind;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.util.StringConverter;
 import launcher.Launch;
 import model.Manager;
 import model.metier.Entite;
@@ -30,7 +30,18 @@ public class GameWindow {
 
         createBinding(coffreVue, mgr.getMonde().getCoffre());
         createBinding(personnageVue, mgr.getMonde().getPersonnagePrincipal());
-        // TODO Bind nbVie sur le nbVie de manager
+
+        nbVie.textProperty().bindBidirectional(mgr.nbVieProperty(), new StringConverter<>() {
+            @Override
+            public String toString(Number object) {
+                return String.valueOf(object);
+            }
+
+            @Override
+            public Number fromString(String string) {
+                return Integer.getInteger(string);
+            }
+        });
     }
 
     public void createBinding(Rectangle rectangle, Entite e) {

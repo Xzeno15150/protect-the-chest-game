@@ -140,7 +140,7 @@ public class Manager {
     }
 
     public void retirerVie() {
-        if (getNbVie() == 1) {
+        if (getNbVie() == 0) {
             gameRunning = false;
             System.out.println("Game over !");
             return;
