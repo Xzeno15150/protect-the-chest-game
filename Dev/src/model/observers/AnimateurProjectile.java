@@ -5,6 +5,7 @@ import model.Manager;
 import model.collisions.Collisionneur;
 import model.collisions.gestionnaires.GestionnaireCollisionsHaut;
 import model.deplacement.DeplaceurHaut;
+import model.metier.Ennemi;
 import model.metier.Entite;
 import model.metier.Projectile;
 
@@ -37,6 +38,9 @@ public class AnimateurProjectile implements Observer, DeplaceurHaut {
             return true;
         }
         else {
+            for (Entite aTuer : gestionnaire.getEntiteATuer()){
+                mgr.tuer((Ennemi) aTuer);
+            }
             mgr.getMonde().getLesEntites().remove(e);
             return false;
         }

@@ -25,8 +25,11 @@ public abstract class GestionnaireCollisions {
                     if(entite instanceof Ennemi){
                         if(e.equals(manager.getMonde().getPersonnagePrincipal()) || e.equals(manager.getMonde().getCoffre())) {
                             manager.retirerVie();
+                            aTuer.add(entite);
                         }
-                        aTuer.add(entite);
+                    }
+                    if(entite instanceof Projectile && e instanceof Ennemi){
+                        aTuer.add(e);
                     }
                     return true;
                 }
