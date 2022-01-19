@@ -1,5 +1,7 @@
 package model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.input.KeyCode;
 import model.boucles.Boucle60FPS;
 import model.deplacement.DeplaceurNormalVitesse2;
@@ -25,6 +27,29 @@ import java.util.Set;
 
 public class Manager {
 
+    private final IntegerProperty numManche= new SimpleIntegerProperty(1);
+        public int getNumManche() {
+        return numManche.get();
+    }
+        public IntegerProperty numMancheProperty() {
+        return numManche;
+    }
+        public void setNumManche(int numManche) {
+        this.numManche.set(numManche);
+    }
+
+    private final IntegerProperty nbVie = new SimpleIntegerProperty();
+        public int getNbVie() {
+        return nbVie.get();
+    }
+        public IntegerProperty nbVieProperty() {
+        return nbVie;
+    }
+        public void setNbVie(int nbVie) {
+        this.nbVie.set(nbVie);
+    }
+
+    private boolean gameRunning = true;
     private final Loader loader = new Stub();
     private DeplaceurNormal deplaceur;
     private Collisionneur collisionneur;
@@ -35,6 +60,7 @@ public class Manager {
 
     public void startGame() {
         monde = loader.load();
+        setNbVie(3);
         collisionneur = new CollisionneurSimple(monde);
         deplaceur = new DeplaceurNormalVitesse2(collisionneur, this);
 
@@ -77,18 +103,26 @@ public class Manager {
         }
     }
 
+    public void mancheSuivante() {
+        setNumManche(getNumManche()+1);
+    }
+
     public void tuer(Ennemi ennemi) {
         monde.removeEntite(ennemi);
     }
 
     public void retirerVie() {
-
+        if (getNbVie() == 1) {
+            gameRunning = false;
+            return;
+        }
+        setNbVie(getNbVie() - 1);
     }
 
     public Monde getMonde() {
         return monde;
     }
     public boolean isGameRunning() {
-        return true;
+        return gameRunning;
     }
 }

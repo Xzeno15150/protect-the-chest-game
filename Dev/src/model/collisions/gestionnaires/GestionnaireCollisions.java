@@ -23,13 +23,10 @@ public abstract class GestionnaireCollisions {
             if (!e.equals(entite)){
                 if (isDirectionCollision(entite, e, vitesse)) {
                     if(entite instanceof Ennemi){
-                        if(e instanceof Projectile){
-                            aTuer.add(entite);
+                        if(e.equals(manager.getMonde().getPersonnagePrincipal()) || e.equals(manager.getMonde().getCoffre())) {
+                            manager.retirerVie();
                         }
-                        if(e.equals(manager.getMonde().getPersonnagePrincipal()))
-                            aTuer.add(entite);
-                        if(e.equals(manager.getMonde().getCoffre()))
-                            aTuer.add(entite);
+                        aTuer.add(entite);
                     }
                     return true;
                 }

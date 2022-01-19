@@ -53,9 +53,8 @@ public class IASimple implements IA, Observer {
             else deplaceur.deplacerGauche(p);
         }
         if(p.getY()+(p.getHauteur()/2)  > coffre.getY()+(coffre.getHauteur()/2)) {
-            if(deplaceur.deplacerHaut(p))
-                return;
-            else deplaceur.deplacerDroite(p);
+            if(!deplaceur.deplacerHaut(p))
+                deplaceur.deplacerDroite(p);
         }
     }
 

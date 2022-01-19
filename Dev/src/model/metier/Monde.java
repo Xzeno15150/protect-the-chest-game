@@ -11,6 +11,8 @@ import java.util.List;
 
 public class Monde {
 
+    private static final double TAILLE_ENNEMI = 30;
+
     private final Personnage personnagePrincipal;
     private final Obstacle coffre;
 
@@ -61,12 +63,24 @@ public class Monde {
         return coffre;
     }
 
-    public void addEntite(Entite entite) {
-        if (!lesEntites.contains(entite))
-            lesEntites.add(entite);
+    public boolean addEntite(Entite entite) {
+        if (!lesEntites.contains(entite)) {
+            return lesEntites.add(entite);
+        }
+        return false;
     }
 
-    public void removeEntite(Entite entite) {
-        lesEntites.remove(entite);
+    public boolean removeEntite(Entite entite) {
+        return lesEntites.remove(entite);
+    }
+
+    public void createRandomPosEnnemi() {
+        double x, y;
+        x = Math.random() * (getLargeur()-TAILLE_ENNEMI*2);
+        y = Math.random() * (getHauteur()/5) + TAILLE_ENNEMI+5;
+        while(!addEntite(new Ennemi(x,y,TAILLE_ENNEMI))){
+            x = Math.random() * (getLargeur()-TAILLE_ENNEMI*2);
+            y = Math.random() * (getHauteur()/5) + TAILLE_ENNEMI+5;
+        }
     }
 }

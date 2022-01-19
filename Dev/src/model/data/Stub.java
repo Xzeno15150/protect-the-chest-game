@@ -12,7 +12,6 @@ public class Stub implements Loader{
         List<Entite> entites = new ArrayList<>();
         entites.add(new Personnage(200, 100, 50));
         entites.add(new Obstacle(540-50, 720-50, 50, 100));
-        entites.add(new Ennemi(900,20,30));
         return new Monde(entites);
     }
 }

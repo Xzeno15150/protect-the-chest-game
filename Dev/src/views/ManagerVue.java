@@ -10,6 +10,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import launcher.Launch;
 import model.Manager;
+import model.metier.Ennemi;
 import model.metier.Entite;
 import model.metier.Projectile;
 import views.codeBehind.GameWindow;
@@ -22,7 +23,7 @@ public class ManagerVue {
 
     private final Manager mgr;
     private GameWindow gameWindow;
-    private final Map<Projectile, Rectangle> projectileRectangleMap = new HashMap<>();
+    private final Map<Entite, Rectangle> projectileRectangleMap = new HashMap<>();
 
     public ManagerVue(Manager mgr){
         this.mgr = mgr;
@@ -33,20 +34,21 @@ public class ManagerVue {
             while (c.next()) {
                 if (c.wasAdded()) {
                     Entite e = c.getAddedSubList().get(0);
+                    Rectangle r = new Rectangle();
                     if (e instanceof Projectile) {
-                        Rectangle r = new Rectangle();
                         r.setFill(Color.GREEN);
-                        gameWindow.createBinding(r, e);
-                        projectileRectangleMap.put((Projectile) e, r);
-                        gameWindow.addNode(r);
                     }
+                    if (e instanceof Ennemi) {
+                        r.setFill(Color.BLUE);
+                    }
+                    gameWindow.createBinding(r, e);
+                    projectileRectangleMap.put(e, r);
+                    gameWindow.addNode(r);
                 }
                 if (c.wasRemoved()) {
                     Entite e = c.getRemoved().get(0);
-                    if (e instanceof Projectile) {
-                        gameWindow.removeNode(projectileRectangleMap.get(e));
-                        projectileRectangleMap.remove(e);
-                    }
+                    gameWindow.removeNode(projectileRectangleMap.get(e));
+                    projectileRectangleMap.remove(e);
                 }
             }
         });
