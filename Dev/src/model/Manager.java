@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import launcher.Launch;
 import model.boucles.Boucle60FPS;
+import model.boucles.BoucleDeJeu;
 import model.deplacement.DeplaceurNormalVitesse2;
 import model.IA.IA;
 import model.IA.IASimple;
@@ -32,48 +33,62 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+
 public class Manager {
 
     private final IntegerProperty numManche= new SimpleIntegerProperty(0);
         public int getNumManche() {
-        return numManche.get();
-    }
+            return numManche.get();
+        }
         public IntegerProperty numMancheProperty() {
-        return numManche;
-    }
+            return numManche;
+        }
         public void setNumManche(int numManche) {
-        this.numManche.set(numManche);
-    }
+            this.numManche.set(numManche);
+        }
 
     private final IntegerProperty nbVie = new SimpleIntegerProperty();
         public int getNbVie() {
-        return nbVie.get();
-    }
+            return nbVie.get();
+        }
         public IntegerProperty nbVieProperty() {
-        return nbVie;
-    }
+            return nbVie;
+        }
         public void setNbVie(int nbVie) {
-        this.nbVie.set(nbVie);
-    }
+            this.nbVie.set(nbVie);
+        }
 
-    private final BooleanProperty gameRunning= new SimpleBooleanProperty(true);
-        public BooleanProperty getGameRunningProperty(){
+    private final BooleanProperty gameRunning= new SimpleBooleanProperty();
+        public BooleanProperty gameRunningProperty(){
             return gameRunning;
         }
         public void setGameRunning(boolean gameRunning) {
             this.gameRunning.set(gameRunning);
         }
         public boolean isGameRunning() {
-        return gameRunning.get();
+            return gameRunning.get();
+        }
+
+    private final IntegerProperty bestScore = new SimpleIntegerProperty();
+        public int getBestScore() {
+        return bestScore.get();
+    }
+        public IntegerProperty bestScoreProperty() {
+        return bestScore;
+    }
+        public void setBestScore(int bestScore) {
+        this.bestScore.set(bestScore);
     }
 
     private final Loader loader = new Stub();
     private DeplaceurNormal deplaceur;
     private Collisionneur collisionneur;
-    private  Monde monde;
+    private Monde monde;
     private long lastShotTime;
-
-    private  KeyListener keyListener;
+    private Observer animateurProjectile;
+    private Observer observateurPrincipal;
+    private IASimple iaSimple;
+    private KeyListener keyListener;
 
     public void init() {
 
@@ -101,19 +116,24 @@ public class Manager {
                 }
             }
         });
+
+        animateurProjectile = new AnimateurProjectile(collisionneur, this);
+        observateurPrincipal = new ObservateurPrincipal(this);
+        iaSimple = new IASimple(this, collisionneur);
     }
 
     public void startGame() {
-
-        Set<Observer> observers = new HashSet<>();
-        observers.add(new AnimateurProjectile(collisionneur, this));
-        observers.add(new ObservateurPrincipal(this));
-        observers.add(new IASimple(this, collisionneur));
-        Thread mainBoucle = new Thread(new Boucle120FPS(observers, this));
+        setGameRunning(true);
+        setNbVie(3);
+        setNumManche(0);
+        BoucleDeJeu boucle = new Boucle120FPS(new HashSet<>(), this);
+        boucle.attacher(animateurProjectile);
+        boucle.attacher(observateurPrincipal);
+        boucle.attacher(iaSimple);
+        Thread mainBoucle = new Thread(boucle);
         mainBoucle.start();
 
-        mancheSuivante();
-
+        monde.createRandomPosEnnemi();
     }
 
     public void deplacerPersonnagePrincipal(){
@@ -152,12 +172,17 @@ public class Manager {
     }
 
     public void retirerVie() {
-        if (getNbVie() == 0) {
-            setGameRunning(false);
-            System.out.println("Game over !");
-            return;
-        }
         setNbVie(getNbVie() - 1);
+        if (getNbVie() == 0) {
+            changeBestScore();
+            setGameRunning(false);
+        }
+    }
+
+    public void changeBestScore() {
+        if (getNumManche() > getBestScore()) {
+            setBestScore(getNumManche());
+        }
     }
 
     public Monde getMonde() {

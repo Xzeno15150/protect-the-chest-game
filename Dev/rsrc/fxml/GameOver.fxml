@@ -33,7 +33,7 @@
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de manches :" textAlignment="RIGHT" styleClass="texteBlanc"/>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meilleur score :" GridPane.rowIndex="1" styleClass="texteBlanc" />
-            <Label alignment="CENTER" textAlignment="CENTER" GridPane.columnIndex="1">
+            <Label fx:id="score" styleClass="texteBlanc" alignment="CENTER" textAlignment="CENTER" GridPane.columnIndex="1">
                <font>
                   <Font name="Agency FB" size="30.0" />
                </font>
@@ -44,7 +44,7 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <Label alignment="CENTER" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="meilleurScore" styleClass="texteBlanc" alignment="CENTER" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Agency FB" size="30.0" />
                </font>

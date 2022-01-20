@@ -31,7 +31,7 @@
                </rowConstraints>
                <children>
                   <Text strokeType="OUTSIDE" styleClass="texteBlanc" text="Meilleur score :" />
-                  <Label styleClass="texteBlanc" GridPane.columnIndex="1" />
+                  <Label styleClass="texteBlanc" GridPane.columnIndex="1" fx:id="meilleurScore"/>
                </children>
             </GridPane>
             <Button fx:id="playBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onActionPlayButton" text="Jouer" textAlignment="CENTER" VBox.vgrow="ALWAYS">

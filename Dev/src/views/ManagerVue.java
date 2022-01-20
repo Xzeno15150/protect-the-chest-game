@@ -1,7 +1,5 @@
 package views;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +13,6 @@ import model.Manager;
 import model.metier.Ennemi;
 import model.metier.Entite;
 import model.metier.Projectile;
-import views.codeBehind.GameOver;
 import views.codeBehind.GameWindow;
 
 import java.io.IOException;
@@ -30,6 +27,15 @@ public class ManagerVue {
 
     public ManagerVue(Manager mgr){
         this.mgr = mgr;
+        mgr.gameRunningProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                try {
+                    gameOver();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void addListenerForEntites(){
@@ -73,7 +79,6 @@ public class ManagerVue {
         addListenerForEntites();
         Launch.getPrimaryStage().setScene(new Scene(root));
         mgr.startGame();
-        //gameOver();
     }
 
     public void gameOver() throws IOException {
