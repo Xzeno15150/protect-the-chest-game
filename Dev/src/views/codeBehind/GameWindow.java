@@ -25,6 +25,12 @@ public class GameWindow {
     @FXML
     private Rectangle personnageVue;
     @FXML
+    private Rectangle obstacle;
+    @FXML
+    private Rectangle obstacle2;
+    @FXML
+    private Rectangle obstacle3;
+    @FXML
     private Label nbVie;
     @FXML
     private Label nbMort;
@@ -66,6 +72,9 @@ public class GameWindow {
 
         createBinding(coffreVue, mgr.getMonde().getCoffre());
         createBinding(personnageVue, mgr.getMonde().getPersonnagePrincipal());
+        createBinding(obstacle, mgr.getMonde().getLesEntites().get(2));
+        createBinding(obstacle2, mgr.getMonde().getLesEntites().get(3));
+        createBinding(obstacle3, mgr.getMonde().getLesEntites().get(4));
 
         nbVie.textProperty().bindBidirectional(mgr.nbVieProperty(), new StringConverter<>() {
             @Override

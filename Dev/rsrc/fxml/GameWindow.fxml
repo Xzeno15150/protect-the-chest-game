@@ -22,6 +22,9 @@
    
    <Rectangle fx:id="coffreVue" fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
    <Rectangle fx:id="personnageVue" fill="RED" stroke="BLACK" strokeType="INSIDE" />
+   <Rectangle fx:id="obstacle" fill="saddlebrown" stroke="BLACK" strokeType="INSIDE" />
+   <Rectangle fx:id="obstacle2" fill="saddlebrown" stroke="BLACK" strokeType="INSIDE" />
+   <Rectangle fx:id="obstacle3" fill="saddlebrown" stroke="BLACK" strokeType="INSIDE" />
    <Label fx:id="nbMort" alignment="CENTER" contentDisplay="CENTER" layoutX="1020.0" layoutY="20.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="32.0" prefWidth="46.0" text="0" textAlignment="CENTER" textFill="black" textOverrun="CENTER_ELLIPSIS">
       <font>
          <Font name="System Bold" size="26.0" />
