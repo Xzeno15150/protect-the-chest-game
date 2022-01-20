@@ -3,20 +3,21 @@ package views.codeBehind;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.StringConverter;
-import javafx.util.converter.BooleanStringConverter;
 import launcher.Launch;
 import model.Manager;
 import model.metier.Entite;
 
-
+/**
+ * Code behind de la vue du jeu
+ */
 public class GameWindow {
 
     private final Manager mgr = Launch.getManager();
+
     @FXML
     private Pane mainPane;
     @FXML
@@ -30,21 +31,30 @@ public class GameWindow {
     @FXML
     private ImageView imageNbMort;
 
-    public void createBinding(Rectangle rectangle, Entite e) {
-        rectangle.xProperty().bind(e.xProperty());
-        rectangle.yProperty().bind(e.yProperty());
-        rectangle.heightProperty().bind(e.hauteurProperty());
-        rectangle.widthProperty().bind(e.largeurProperty());
+    /**
+     * Factorise le binding des rectangles avec le modèle
+     * @param rectangle Rectangle afficher sur la vue
+     * @param entite Entite du modèle sur laquelle se bind
+     */
+    public void createBinding(Rectangle rectangle, Entite entite) {
+        rectangle.xProperty().bind(entite.xProperty());
+        rectangle.yProperty().bind(entite.yProperty());
+        rectangle.heightProperty().bind(entite.hauteurProperty());
+        rectangle.widthProperty().bind(entite.largeurProperty());
     }
 
-    public Pane getMainPane() {
-        return mainPane;
-    }
-
+    /**
+     * Retire une Node n à la vue
+     * @param n Node à retirer à la vue
+     */
     public void removeNode(Node n) {
         mainPane.getChildren().remove(n);
     }
 
+    /**
+     * Ajouter une Node n à la vue
+     * @param n Node à ajouter
+     */
     public void addNode(Node n) {
         mainPane.getChildren().add(n);
     }

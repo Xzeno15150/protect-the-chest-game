@@ -1,6 +1,5 @@
 package views.codeBehind;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,6 +10,9 @@ import views.ManagerVue;
 
 import java.io.IOException;
 
+/**
+ * Classe de la vue de game over
+ */
 public class GameOver {
     private final ManagerVue managerVue = Launch.getManagerVue();
     private final Manager mgr = Launch.getManager();
@@ -22,11 +24,18 @@ public class GameOver {
     @FXML
     private Label meilleurScore;
 
-    public void onActionRejouer(ActionEvent actionEvent) throws IOException {
+    /**
+     * Permet de rejouer une partie
+     * @throws IOException Relance en cas d'Exception
+     */
+    public void onActionRejouer() throws IOException {
         managerVue.jouer();
     }
 
-    public void onActionQuitter(ActionEvent actionEvent){
+    /**
+     * Permet de quitter le jeu
+     */
+    public void onActionQuitter(){
         managerVue.quitter(buttonQuitter);
     }
 

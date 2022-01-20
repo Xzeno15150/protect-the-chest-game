@@ -12,7 +12,9 @@ import views.ManagerVue;
 
 import java.io.IOException;
 
-
+/**
+ * Code behind du menu principal
+ */
 public class MainMenu {
 
     private final ManagerVue managerVue = Launch.getManagerVue();
@@ -26,13 +28,22 @@ public class MainMenu {
     private Label meilleurScore;
 
 
+    /**
+     * Handler du bouton playBtn
+     * Appelle la méthode jouer() de managerVue
+     * @throws IOException Relance l'Exception
+     */
     @FXML
-    public void onActionPlayButton(ActionEvent actionEvent) throws IOException {
+    public void onActionPlayButton() throws IOException {
         managerVue.jouer();
     }
 
+    /**
+     * Handler du bouton leaveBtn
+     * Appelle la méthode quitter() de managerVue
+     */
     @FXML
-    public void onActionLeaveButton(ActionEvent actionEvent){
+    public void onActionLeaveButton(){
         managerVue.quitter(leaveBtn);
     }
 
