@@ -9,6 +9,11 @@ import model.metier.Monde;
  * Gestionnaire de collisions vers la droite
  */
 public class GestionnaireCollisionsDroite extends GestionnaireCollisions{
+    /**
+     * constructeur renvoie au GestionnaireCollisions
+     * @param collisionneur Collisionneur utilisé pour tester les collisions
+     * @param manager Manager de l'application
+     */
     public GestionnaireCollisionsDroite(Collisionneur collisionneur, Manager manager) {
         super(collisionneur, manager);
     }

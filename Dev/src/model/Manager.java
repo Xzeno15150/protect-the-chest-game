@@ -26,7 +26,9 @@ import model.observers.Observer;
 
 import java.util.HashSet;
 
-
+/**
+ * le Manager permet de gerer les données de l'application
+ */
 public class Manager {
 
     private final IntegerProperty numManche= new SimpleIntegerProperty(0);
