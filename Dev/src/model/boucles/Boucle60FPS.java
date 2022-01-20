@@ -11,7 +11,7 @@ import java.util.Set;
 public class Boucle60FPS extends BoucleDeJeu{
     /**
      * constructeur récupere le Manager et la liste des observateurs et les passe à BoucleDeJeu
-     * @param observers Set<Observer> observers est la liste qui contient les observateurs
+     * @param observers Set observers est la liste qui contient les observateurs
      * @param manager Manager manager on récupere le Manager
      */
     public Boucle60FPS(Set<Observer> observers, Manager manager) {

@@ -20,7 +20,7 @@ public class KeyListener {
 
     /**
      * récupère la lise des touches appuyées
-     * @return retourne la liste des touches appuyées (SetProperty<KeyCode>)
+     * @return retourne la liste des touches appuyées (SetProperty)
      */
     public SetProperty<KeyCode> activeKeysProperty() {
         return activeKeys;
@@ -28,7 +28,7 @@ public class KeyListener {
 
     /**
      * récupère la liste des touches appuyées
-     * @return retourne la liste des touches appuyées (Set<KeyCode>)
+     * @return retourne la liste des touches appuyées (Set)
      */
     public Set<KeyCode> getActiveKeys() {
         return activeKeys.get();
@@ -36,7 +36,7 @@ public class KeyListener {
 
     /**
      * change la liste des touches appuyées
-     * @param activeKeys change la liste des touches appuyées par activeKeys (ObservableSet<KeyCode>)
+     * @param activeKeys change la liste des touches appuyées par activeKeys (ObservableSet)
      */
     public void setActiveKeys(ObservableSet<KeyCode> activeKeys) {
         this.activeKeys.set(activeKeys);
@@ -44,7 +44,7 @@ public class KeyListener {
 
     /**
      * constructeur de la classe KeyListener qui récupère les touches et ajoute/retire dans la liste les touches préssées
-     * @param activeKeys prend en parametre activeKeys qui est la liste des touches préssées (Set<KeyCode>)
+     * @param activeKeys prend en parametre activeKeys qui est la liste des touches préssées (Set)
      */
     public KeyListener(Set<KeyCode> activeKeys) {
         setActiveKeys(FXCollections.observableSet(activeKeys));

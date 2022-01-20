@@ -22,21 +22,21 @@ public class Monde {
     private final ListProperty<Entite> lesEntites;
         /**
          * Récupère la liste des Entite du Monde
-         * @return retourne la liste des Entite du Monde (List<Entite>)
+         * @return retourne la liste des Entite du Monde (List)
          */
         public List<Entite> getLesEntites(){
             return lesEntites.get();
         }
         /**
          * Récupère la ListProperty des Entite du Monde
-         * @return retourne la ListProperty<Entite> des Entite du Monde
+         * @return retourne la ListProperty des Entite du Monde
          */
         public ListProperty<Entite> lesEntitesProperty() {
             return lesEntites;
         }
         /**
          * change la liste des Entite du Monde
-         * @param lesEntites Par lesEntites (ObservableList<Entite>)
+         * @param lesEntites Par lesEntites (ObservableList)
          */
         public void setLesEntites(ObservableList<Entite> lesEntites) {
                 this.lesEntites.set(lesEntites);

@@ -12,7 +12,7 @@ public class Boucle120FPS extends BoucleDeJeu{
 
     /**
      * constructeur récupere le Manager et la liste des observateurs et les passe à BoucleDeJeu
-     * @param observers Set<Observer> observers est la liste qui contient les observateurs
+     * @param observers Set observers est la liste qui contient les observateurs
      * @param mgr Manager mgr on récupere le Manager
      */
     public Boucle120FPS(Set<Observer> observers, Manager mgr) {

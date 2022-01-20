@@ -15,7 +15,7 @@ public abstract class  BoucleDeJeu implements Runnable{
 
     /**
      * constructeur récupere le Manager et la liste des observateurs
-     * @param observers Set<Observer> observers est la liste qui contient les observateurs
+     * @param observers Set observers est la liste qui contient les observateurs
      * @param mgr Manager mgr on récupere le Manager
      */
     public BoucleDeJeu(Set<Observer> observers, Manager mgr) {
@@ -55,7 +55,7 @@ public abstract class  BoucleDeJeu implements Runnable{
 
     /**
      * attacher permet d'ajouter un Observer à la liste des observateurs
-     * @param o Observer o est ajouté à la liste observers(Set<Observer>)
+     * @param o Observer o est ajouté à la liste observers(Set)
      */
     public void attacher(Observer o){
         observers.add(o);
@@ -63,7 +63,7 @@ public abstract class  BoucleDeJeu implements Runnable{
 
     /**
      * detacher permet de supprimer un Observer à la liste des observateurs
-     * @param o Observer o est l'observateur à retirer de la liste observers (Set<Observer>)
+     * @param o Observer o est l'observateur à retirer de la liste observers (Set)
      */
     public void detacher(Observer o){
         observers.remove(o);
