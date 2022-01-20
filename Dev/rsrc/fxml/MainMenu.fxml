@@ -2,28 +2,44 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-
-
 <?import javafx.scene.text.Text?>
-<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" prefWidth="1080" prefHeight="720" fx:controller="views.codeBehind.MainMenu" stylesheets="/fxml/css/style.css">
+
+<BorderPane prefHeight="720" prefWidth="1080" stylesheets="/fxml/css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.codeBehind.MainMenu">
    <top>
       <VBox alignment="CENTER">
-         <Text text="Protect the Trunk" styleClass="texteBlanc, texteMenu" style="-fx-font-size: 50; -fx-underline: true"/>
-         <Text styleClass="texteMenu, texteBlanc" text="Protégez votre coffre !"/>
+         <Text style="-fx-font-size: 50; -fx-underline: true" styleClass="texteBlanc, texteMenu" text="Protect the Trunk" />
+         <Text styleClass="texteMenu, texteBlanc" text="Protégez votre coffre !" />
       </VBox>
    </top>
    <center>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" text="Jouer" textAlignment="CENTER" VBox.vgrow="ALWAYS"
-                    fx:id="playBtn" onAction="#onActionPlayButton">
+            <GridPane alignment="CENTER">
+               <columnConstraints>
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="300.0" />
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="300.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" styleClass="texteBlanc" text="Meilleur score :" />
+                  <Label styleClass="texteBlanc" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+            <Button fx:id="playBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onActionPlayButton" text="Jouer" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" text="Quitter" textAlignment="CENTER" VBox.vgrow="ALWAYS" fx:id="leaveBtn" onAction="#onActionLeaveButton"/>
+            <Button fx:id="leaveBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onActionLeaveButton" text="Quitter" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
          </children>
          <BorderPane.margin>
             <Insets top="50.0" />
