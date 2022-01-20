@@ -6,7 +6,14 @@ import model.metier.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Stub contient des données brutes permettant de créer un Monde
+ */
 public class Stub implements Loader{
+    /**
+     * load charge les données et créer un Monde
+     * @return Retourne un Monde avec ses données
+     */
     @Override
     public Monde load() {
         List<Entite> entites = new ArrayList<>();
