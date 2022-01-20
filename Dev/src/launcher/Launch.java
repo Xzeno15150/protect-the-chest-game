@@ -35,7 +35,7 @@ public class Launch extends Application {
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Protect the Trunk");
+        primaryStage.setTitle("Protect the Chest");
         primaryStage.show();
 
     }
