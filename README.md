@@ -20,4 +20,7 @@ Each enemy killed make another appeared in a random position and increase you ki
 Ennemies try to touch you chest. If they touch either you or the chest, you lost a life.
 When you have lost 3 lives, the game stop on GameOver, and the best score is updated if it has to.
 
-[Ceci une vidéo de présentation du jeu](https://github.com/Xzeno15150/protect-the-chest-game/blob/main/Documentation/)
+
+
+https://user-images.githubusercontent.com/32650555/158689110-d429df14-5115-4e25-a35c-3a9389845629.mp4
+
